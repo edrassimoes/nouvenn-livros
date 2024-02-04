@@ -1,5 +1,8 @@
 import Popup from "reactjs-popup";
 import styled from "styled-components";
+import {useState} from "react";
+import Input from "../../Input/index.jsx";
+import Radio from "../../Radio/index.jsx";
 
 const StyledPopup = styled(Popup)`
 
@@ -50,25 +53,7 @@ const BotaoFechar = styled.button`
     background: red;
 `
 
-const InputEstilizado = styled.div`
-    
-    label {
-        display: block;
-        margin-top: 3px;
-        font-family: "Comic Sans MS", sans-serif;
-    }
-    
-    input {
-        border: 2px solid black;
-        border-radius: 3px;
-        box-sizing: border-box;
-        width: 100%;
-        font-family: "Comic Sans MS", sans-serif;
-    }
-    
-`
-
-const IconeEstilizado = styled.fieldset`
+const SelecaoEstilizada = styled.fieldset`
     margin: 7px 0;
     border: 2px solid black;
     border-radius: 3px;
@@ -78,10 +63,6 @@ const IconeEstilizado = styled.fieldset`
     
     legend {
         font-family: "Comic Sans MS", sans-serif;
-    }
-    
-    input {
-        cursor: pointer;
     }
     
 `
@@ -102,9 +83,18 @@ const BotaoSubmit = styled.input`
 
 const CadastroPopup = () => {
 
-    const onSubmit = (event) => {
-        event.preventDefault()
-        console.log('O formulário foi submetido com sucesso!')
+    // Hooks
+    const [titulo, setTitulo] = useState('')
+    const [autor, setAutor] = useState('')
+    const [idioma, setIdioma] = useState('')
+    const [paginas, setPaginas] = useState('')
+    const [editora, setEditora] = useState('')
+    const [icone, setIcone] = useState('')
+
+    const onSubmit = (evento) => {
+        evento.preventDefault()
+        console.log('O formulário foi submetido com sucesso! \nDados:',
+            titulo, autor, idioma, paginas, editora, icone)
     }
 
     return (
@@ -113,37 +103,54 @@ const CadastroPopup = () => {
                 <BotaoFechar title="Fechar">✖</BotaoFechar>
                 <h3>📋 Cadrastrar um novo livro</h3>
                 <form onSubmit={onSubmit}>
-                    <InputEstilizado>
-                        <label>Titulo:</label>
-                        <input required/>
-                        <label>Autor:</label>
-                        <input required/>
-                        <label>Idioma:</label>
-                        <input required/>
-                        <label>Número de páginas:</label>
-                        <input required/>
-                        <label>Editora:</label>
-                        <input required/>
-                    </InputEstilizado>
-                    <IconeEstilizado>
+                    <Input
+                        label="Titulo:"
+                        valor={titulo}
+                        aoAlterar={valor => setTitulo(valor)}
+                    />
+                    <Input
+                        label="Autor:"
+                        valor={autor}
+                        aoAlterar={valor => setAutor(valor)}
+                    />
+                    <Input
+                        label="Idioma:"
+                        valor={idioma}
+                        aoAlterar={valor => setIdioma(valor)}
+                    />
+                    <Input
+                        label="Número de páginas:"
+                        valor={paginas}
+                        aoAlterar={valor => setPaginas(valor)}
+                    />
+                    <Input
+                        label="Editora:"
+                        valor={editora}
+                        aoAlterar={valor => setEditora(valor)}
+                    />
+                    <SelecaoEstilizada>
                         <legend>Escolha um icone:</legend>
-                        <div>
-                            <input type="radio" id="red_book" name="book_icon" value="📕" required/>
-                            <label htmlFor="red_book">📕</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="green_book" name="book_icon" value="📗"/>
-                            <label htmlFor="green_book">📗</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="blue_book" name="book_icon" value="📘"/>
-                            <label htmlFor="blue_book">📘</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="orange_book" name="book_icon" value="📙"/>
-                            <label htmlFor="orange_book">📙</label>
-                        </div>
-                    </IconeEstilizado>
+                        <Radio
+                            id="red_book"
+                            valor="📕"
+                            aoAlterar={icone => setIcone(icone)}
+                        />
+                        <Radio
+                            id="green_book"
+                            valor="📗"
+                            aoAlterar={icone => setIcone(icone)}
+                        />
+                        <Radio
+                            id="blue_book"
+                            valor="📘"
+                            aoAlterar={icone => setIcone(icone)}
+                        />
+                        <Radio
+                            id="orange_book"
+                            valor="📙"
+                            aoAlterar={icone => setIcone(icone)}
+                        />
+                    </SelecaoEstilizada>
                     <BotaoSubmit type="submit"/>
                 </form>
             </div>
