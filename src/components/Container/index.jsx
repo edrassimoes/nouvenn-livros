@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Header from "../Header/index.jsx";
 import Estante from "../Estante/index.jsx";
 import EstanteConta from "../EstanteConta/index.jsx";
-import BookshelfIcon from "../BookshelfIcon/index.jsx";
+import Banner from "../Banner/index.jsx";
 
 const ContainerEstilizado = styled.div`
     width: 100%;
@@ -31,12 +31,11 @@ const Container = () => {
             <ContainerEstilizado>
                 <BoxEstilizado>
                     <Header/>
-                    <BookshelfIcon/>
+                    <Banner/>
+                    <Estante/>
                 </BoxEstilizado>
                 <BoxEstilizado>
                     <EstanteConta/>
-                    <Estante/>
-                    <Estante/>
                 </BoxEstilizado>
             </ContainerEstilizado>
         </>

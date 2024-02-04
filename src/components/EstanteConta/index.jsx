@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import Livro from "../LivroGaleria/index.jsx";
-import LivroSolicitado from "../LivroSolicitado/index.jsx";
-import LivroProprio from "../LivroProprio/index.jsx";
-import LivroEmprestado from "../LivroEmprestado/index.jsx";
+import LivroProprio from "../Livros/LivroProprio/index.jsx";
+import CadastroPopup from "../Popup/CadastroPopup/index.jsx";
+
 
 const EstanteEstilizada = styled.div`
     background-color: white;
@@ -18,23 +17,11 @@ const TituloEstilizado = styled.p`
     margin: 0 0 0 7px;
 `
 
-const BotaoCadastro = styled.button`
-    border-radius: 3px;
-    cursor: pointer;
-    font-family: "Comic Sans MS", sans-serif;
-    margin: 7px;
-    
-    &:hover {
-        background-color: lightgreen;
-    }
-    
-`
-
 const EstanteConta = () => {
     return (
         <EstanteEstilizada>
             <TituloEstilizado>Meus livros</TituloEstilizado>
-            <BotaoCadastro>Cadastrar um livro +</BotaoCadastro>
+            <CadastroPopup/>
             <LivroProprio/>
         </EstanteEstilizada>
     );

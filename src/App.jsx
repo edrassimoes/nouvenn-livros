@@ -1,11 +1,14 @@
 import EstilosGlobais from "./components/EstilosGlobais/index.jsx";
 import Container from "./components/Container/index.jsx";
+import {LivroProvider} from "./context/LivroContext.jsx";
 
 function App() {
     return (
         <>
-            <EstilosGlobais/>
-            <Container/>
+            <LivroProvider>
+                <EstilosGlobais/>
+                <Container/>
+            </LivroProvider>
         </>
     )
 }

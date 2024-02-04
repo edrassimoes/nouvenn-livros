@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import Livro from "../LivroGaleria/index.jsx";
-import LivroSolicitado from "../LivroSolicitado/index.jsx";
-import LivroProprio from "../LivroProprio/index.jsx";
-import LivroEmprestado from "../LivroEmprestado/index.jsx";
+import LivroGaleria from "../Livros/LivroGaleria/index.jsx";
 
 const EstanteEstilizada = styled.div`
     background-color: white;
@@ -18,13 +15,19 @@ const TituloEstilizado = styled.p`
     margin: 0 0 0 7px;
 `
 
+const ScrollableDiv = styled.div`
+    min-height: fit-content;
+    max-height: 475px;
+    overflow: auto;
+`
+
 const Estante = () => {
     return (
         <EstanteEstilizada>
-            <TituloEstilizado>Livros</TituloEstilizado>
-            <Livro/>
-            <LivroEmprestado/>
-            <LivroSolicitado/>
+            <TituloEstilizado>Livros disponíveis:</TituloEstilizado>
+            <ScrollableDiv>
+                <LivroGaleria/>
+            </ScrollableDiv>
         </EstanteEstilizada>
     );
 };

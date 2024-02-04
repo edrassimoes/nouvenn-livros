@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import SearchBar from "../SearchBar/index.jsx";
+import ContaPopup from "../Popup/ContaPopup/index.jsx";
 
 const HeaderEstilizado = styled.header`
     background-color: white;
@@ -22,18 +23,9 @@ const BotaoSair = styled.button`
         border-radius: 3px;
     }
     
-`
-
-const BotaoUsuario = styled.button`
-    cursor: pointer;
-    font-family: "Comic Sans MS", sans-serif;
-    margin-right: 5px;
-
-    &:hover {
-        background-color: orange;
-        border: 2px solid black;
-        border-radius: 3px;
-        font-weight: bold;
+    @media (max-width: 600px) {
+        display: block;
+        width: 100%;
     }
     
 `
@@ -43,7 +35,7 @@ const Header = () => {
         <HeaderEstilizado>
             <SearchBar/>
             <section>
-                <BotaoUsuario>Minhas informações 👤</BotaoUsuario>
+                <ContaPopup/>
                 <BotaoSair>SAIR</BotaoSair>
             </section>
         </HeaderEstilizado>

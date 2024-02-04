@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import LivroPopup from "../../Popup/LivroPopup/index.jsx";
 
 const LivroEstilizado = styled.div`
     background-color: whitesmoke;
@@ -30,12 +31,13 @@ const LivroEstilizado = styled.div`
     
 `
 
-const Livro = () => {
+const LivroGaleria = () => {
     return (
         <>
             <LivroEstilizado>
                 <p> 📚 Titulo | Autor | Editora | Dono</p>
                 <div>
+                    <LivroPopup/>
                     <button>Solicitar</button>
                 </div>
             </LivroEstilizado>
@@ -43,4 +45,4 @@ const Livro = () => {
     );
 };
 
-export default Livro
+export default LivroGaleria

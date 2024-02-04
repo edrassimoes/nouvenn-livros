@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import LivroPopup from "../../Popup/LivroPopup/index.jsx";
 
 const LivroEstilizado = styled.div`
     background-color: whitesmoke;
@@ -47,6 +48,7 @@ const LivroSolicitado = () => {
             <LivroEstilizado>
                 <p> 📚 Titulo | Autor | Editora | Dono</p>
                 <div>
+                    <LivroPopup/>
                     <BotaoAceitar title="Aprovar">✅</BotaoAceitar>
                     <BotaoNegar title="Negar">❌</BotaoNegar>
                 </div>

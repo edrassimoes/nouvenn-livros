@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import LivroPopup from "../../Popup/LivroPopup/index.jsx";
 
 const LivroEstilizado = styled.div`
     background-color: whitesmoke;
@@ -20,28 +21,28 @@ const LivroEstilizado = styled.div`
     button {
         cursor: pointer;
         font-family: "Comic Sans MS", sans-serif;
-
+        
         &:hover {
-            background-color: red;
+            background-color: deepskyblue;
             border-radius: 3px;
-            color: white;
         }
         
     }
     
 `
 
-const LivroProprio = () => {
+const LivroEmprestado = () => {
     return (
         <>
             <LivroEstilizado>
                 <p> 📚 Titulo | Autor | Editora | Dono</p>
                 <div>
-                    <button>Remover</button>
+                    <LivroPopup/>
+                    <button>Devolver</button>
                 </div>
             </LivroEstilizado>
         </>
     );
 };
 
-export default LivroProprio
+export default LivroEmprestado

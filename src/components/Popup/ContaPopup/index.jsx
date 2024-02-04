@@ -12,6 +12,11 @@ const BotaoUsuario = styled.button`
         border-radius: 3px;
         font-weight: bold;
     }
+
+    @media (max-width: 600px) {
+        display: block;
+        width: 100%;
+    }
     
 `
 

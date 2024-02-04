@@ -8,7 +8,7 @@ const ContainerImagem = styled.div`
     
     img {
         margin-top: 10px;
-        width: 100px;
+        width: 150px;
     }
     
     p {
@@ -17,13 +17,13 @@ const ContainerImagem = styled.div`
     
 `
 
-const BookshelfIcon = () => {
+const Banner = () => {
     return (
         <ContainerImagem>
-            <img src="src/assets/bookshelf.png" alt=""/>
+            <img src="../../../public/assets/bookshelf.png" alt=""/>
             <p>Não há livros em nossa coleção no momento 🙁</p>
         </ContainerImagem>
     );
 };
 
-export default BookshelfIcon;
+export default Banner;
