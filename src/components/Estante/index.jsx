@@ -21,12 +21,18 @@ const ScrollableDiv = styled.div`
     overflow: auto;
 `
 
-const Estante = () => {
+const Estante = (props) => {
     return (
         <EstanteEstilizada>
             <TituloEstilizado>Livros disponíveis:</TituloEstilizado>
             <ScrollableDiv>
-                <LivroGaleria/>
+                {props.livros.map(livro =>
+                    <LivroGaleria
+                        titulo={livro.titulo}
+                        autor={livro.autor}
+                        icone={livro.icone}
+                    />
+                )}
             </ScrollableDiv>
         </EstanteEstilizada>
     );

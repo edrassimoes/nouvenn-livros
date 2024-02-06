@@ -26,8 +26,10 @@ const Input = (props) => {
 
     return (
         <InputEstilizado>
-            <label>{props.label}</label>
-            <input  value={props.valor} onChange={aoDigitar} required/>
+            <label>
+                {props.label}
+                <input value={props.valor} onChange={aoDigitar} required/>
+            </label>
         </InputEstilizado>
     );
 };

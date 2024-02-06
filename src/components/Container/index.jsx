@@ -3,6 +3,7 @@ import Header from "../Header/index.jsx";
 import Estante from "../Estante/index.jsx";
 import EstanteConta from "../EstanteConta/index.jsx";
 import Banner from "../Banner/index.jsx";
+import {useState} from "react";
 
 const ContainerEstilizado = styled.div`
     width: 100%;
@@ -26,16 +27,24 @@ const BoxEstilizado = styled.div`
 `
 
 const Container = () => {
+
+    const [livros, setLivros] = useState([])
+    
     return (
         <>
             <ContainerEstilizado>
                 <BoxEstilizado>
                     <Header/>
                     <Banner/>
-                    <Estante/>
+                    <Estante
+                        livros={livros}
+                    />
                 </BoxEstilizado>
                 <BoxEstilizado>
-                    <EstanteConta/>
+                    <EstanteConta
+                        // Ao passar os livros para as estantes, filtrar a propriedade que deseja!
+                        aoCadastrarLivro = {livro => setLivros([...livros, livro])}
+                    />
                 </BoxEstilizado>
             </ContainerEstilizado>
         </>

@@ -20,7 +20,7 @@ const ContainerImagem = styled.div`
 const Banner = () => {
     return (
         <ContainerImagem>
-            <img src="../../../public/assets/bookshelf.png" alt=""/>
+            <img src="/assets/bookshelf.png" alt=""/>
             <p>Não há livros em nossa coleção no momento 🙁</p>
         </ContainerImagem>
     );

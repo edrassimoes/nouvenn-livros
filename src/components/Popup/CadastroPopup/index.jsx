@@ -81,7 +81,7 @@ const BotaoSubmit = styled.input`
     
 `
 
-const CadastroPopup = () => {
+const CadastroPopup = (props) => {
 
     // Hooks
     const [titulo, setTitulo] = useState('')
@@ -93,12 +93,18 @@ const CadastroPopup = () => {
 
     const onSubmit = (evento) => {
         evento.preventDefault()
-        console.log('O formulário foi submetido com sucesso! \nDados:',
-            titulo, autor, idioma, paginas, editora, icone)
+        props.aoCadastrarLivro({
+            titulo,
+            autor,
+            idioma,
+            paginas,
+            editora,
+            icone
+        })
     }
 
     return (
-        <StyledPopup trigger={<BotaoCadastro>Cadastrar um livro +</BotaoCadastro>} modal closeOnDocumentClick>
+        <StyledPopup trigger={<BotaoCadastro>Cadastrar um livro +</BotaoCadastro>} modal>
             <div>
                 <BotaoFechar title="Fechar">✖</BotaoFechar>
                 <h3>📋 Cadrastrar um novo livro</h3>

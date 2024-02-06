@@ -29,13 +29,17 @@ const LivroEstilizado = styled.div`
 
     }
     
+    p {
+        font-family: "Comic Sans MS", sans-serif;
+    }
+    
 `
 
-const LivroGaleria = () => {
+const LivroGaleria = ({ titulo, autor, icone }) => {
     return (
         <>
             <LivroEstilizado>
-                <p> 📚 Titulo | Autor | Editora | Dono</p>
+                <p> {icone} Título: {titulo} | Autor: {autor}</p>
                 <div>
                     <LivroPopup/>
                     <button>Solicitar</button>

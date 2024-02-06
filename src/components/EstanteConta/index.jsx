@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import LivroProprio from "../Livros/LivroProprio/index.jsx";
 import CadastroPopup from "../Popup/CadastroPopup/index.jsx";
 
 
@@ -17,12 +16,13 @@ const TituloEstilizado = styled.p`
     margin: 0 0 0 7px;
 `
 
-const EstanteConta = () => {
+const EstanteConta = (props) => {
     return (
         <EstanteEstilizada>
             <TituloEstilizado>Meus livros</TituloEstilizado>
-            <CadastroPopup/>
-            <LivroProprio/>
+            <CadastroPopup
+                aoCadastrarLivro={props.aoCadastrarLivro}
+            />
         </EstanteEstilizada>
     );
 };

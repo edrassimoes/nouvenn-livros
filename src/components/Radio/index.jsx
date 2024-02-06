@@ -15,7 +15,9 @@ const Radio = (props) => {
     return (
         <RadioEstilizado>
             <input type="radio" id={props.id} name="book_icon" value={props.valor} onChange={aoClicar} required/>
-            <label>{props.valor}</label>
+            <label>
+                {props.valor}
+            </label>
         </RadioEstilizado>
     );
 };
