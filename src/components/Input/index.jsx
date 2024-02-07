@@ -14,6 +14,12 @@ const InputEstilizado = styled.div`
         box-sizing: border-box;
         width: 100%;
         font-family: "Comic Sans MS", sans-serif;
+        
+        &:focus-within {
+            outline: 2px solid darkblue;
+            margin-top: 3px;
+        }
+        
     }
     
 `

@@ -1,7 +1,7 @@
-import EstilosGlobais from "../../components/EstilosGlobais/index.jsx";
-import styled from "styled-components";
 import Input from "../../components/Input/index.jsx";
+import styled from "styled-components";
 import {useState} from "react";
+import EstilosGlobais from "../../components/EstilosGlobais/index.jsx";
 
 const PageContainer = styled.div`
     background-color: ghostwhite;
@@ -21,48 +21,48 @@ const PageContainer = styled.div`
 
 `;
 
-const LoginContainer = styled.div`
+const SingupContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: lightsteelblue;
+    background-color: lightgoldenrodyellow;
     border: 2px solid black;
     border-radius: 5px;
     font-family: "Comic Sans MS", sans-serif;
     padding: 20px;
-	
-	h2 {
-		block-size: fit-content;
-		font-size: 100px;
-		margin: 10px;
-	}
+
+    h2 {
+        block-size: fit-content;
+        font-size: 100px;
+        margin: 10px;
+    }
 
     section {
         display: flex;
         align-items: center;
         text-align: center;
         flex-direction: column;
-		
-		p {
-			font-size: 18px;
-		}
-		
-		a {
-			cursor: pointer;
-			color: darkgreen;
-			
-			&:hover {
-				font-weight: bold;
-			}
-			
-		}
+
+        p {
+            font-size: 18px;
+        }
+
+        a {
+            cursor: pointer;
+            color: darkblue;
+
+            &:hover {
+                font-weight: bold;
+            }
+
+        }
 		
     }
 
 `;
 
-const BotaoEntrar = styled.input`
+const BotaoCriar = styled.input`
     cursor: pointer;
     font-size: larger;
     border: 2px solid black;
@@ -72,53 +72,53 @@ const BotaoEntrar = styled.input`
     margin: 20px 0;
 
     &:hover {
-        background-color: darkblue;
+        background-color: darkgreen;
         color: white;
         font-weight: bold;
     }
 
 `;
 
-const Login = () => {
+const Signup = () => {
 
-	const [nomeEntrar, setNomeEntrar] = useState("");
-	const [senhaEntrar, setSenhaEntrar] = useState("");
+	const [nomeCriar, setNomeCriar] = useState("");
+	const [senhaCriar, setSenhaCriar] = useState("");
 
-	const onSubmitEntrar = (evento) => {
-		evento.preventDefault();
+	const onSubmitCriar = (evento) => {
+		evento.preventDefault()
 		console.log({
-			nomeEntrar,
-			senhaEntrar
-		});
-	};
+			nomeCriar,
+			senhaCriar
+		})
+	}
 
 	return (
 		<div>
 			<EstilosGlobais/>
 			<PageContainer>
-				<LoginContainer>
-					<h1>📚 Emprestimo de Livros</h1>
+				<SingupContainer>
+					<h1>✨ Criar uma conta ✨</h1>
 					<h2>👤</h2>
 					<form>
 						<Input
 							label="Nome de usuário:"
-							valor={nomeEntrar}
-							aoAlterar={nome => setNomeEntrar(nome)}
+							valor={nomeCriar}
+							aoAlterar={nome => setNomeCriar(nome)}
 						/>
 						<Input
 							label="Senha:"
-							valor={senhaEntrar}
-							aoAlterar={senha => setSenhaEntrar(senha)}
+							valor={senhaCriar}
+							aoAlterar={senha => setSenhaCriar(senha)}
 						/>
 						<section>
-							<BotaoEntrar type="submit" value="Entrar" onClick={onSubmitEntrar}/>
-							<p>Não possue uma conta? <a>Cadastre-se</a></p>
+							<BotaoCriar type="submit" value="Cadastrar-se" onClick={onSubmitCriar}/>
+							<p>Já possue uma conta? <a>Fazer login</a></p>
 						</section>
 					</form>
-				</LoginContainer>
+				</SingupContainer>
 			</PageContainer>
 		</div>
 	);
 };
 
-export default Login;
+export default Signup;
