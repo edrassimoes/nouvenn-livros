@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import {useContext} from "react";
+import {LivroContext} from "../../context/LivroContext.jsx";
 
 const ContainerImagem = styled.div`
     display: flex;
@@ -18,10 +20,13 @@ const ContainerImagem = styled.div`
 `
 
 const Banner = () => {
+
+    const {livros} = useContext(LivroContext)
+
     return (
         <ContainerImagem>
             <img src="/assets/bookshelf.png" alt=""/>
-            <p>Não há livros em nossa coleção no momento 🙁</p>
+            {livros.length > 0 ? null : <p>Não há livros em nossa coleção no momento 🙁</p>}
         </ContainerImagem>
     );
 };

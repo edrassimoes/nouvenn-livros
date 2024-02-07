@@ -1,8 +1,9 @@
 import Popup from "reactjs-popup";
 import styled from "styled-components";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import Input from "../../Input/index.jsx";
 import Radio from "../../Radio/index.jsx";
+import {LivroContext} from "../../../context/LivroContext.jsx";
 
 const StyledPopup = styled(Popup)`
 
@@ -18,7 +19,7 @@ const StyledPopup = styled(Popup)`
         box-shadow: rgba(0, 0, 0, 0.16) 0 0 3px;
         padding: 10px;
         width: fit-content;
-        height: 380px;
+        height: 405px;
 
         h3 {
             font-family: "Comic Sans MS", sans-serif;
@@ -83,17 +84,19 @@ const BotaoSubmit = styled.input`
 
 const CadastroPopup = (props) => {
 
-    // Hooks
-    const [titulo, setTitulo] = useState('')
-    const [autor, setAutor] = useState('')
-    const [idioma, setIdioma] = useState('')
-    const [paginas, setPaginas] = useState('')
-    const [editora, setEditora] = useState('')
-    const [icone, setIcone] = useState('')
+    const {
+        livros, setLivros,
+        titulo, setTitulo,
+        autor, setAutor,
+        idioma, setIdioma,
+        paginas, setPaginas,
+        editora, setEditora,
+        icone, setIcone
+    } = useContext(LivroContext)
 
     const onSubmit = (evento) => {
         evento.preventDefault()
-        props.aoCadastrarLivro({
+        adicionarLivro({
             titulo,
             autor,
             idioma,
@@ -103,9 +106,12 @@ const CadastroPopup = (props) => {
         })
     }
 
+    function adicionarLivro(novoLivro) {
+        return setLivros([...livros, novoLivro])
+    }
+
     return (
         <StyledPopup trigger={<BotaoCadastro>Cadastrar um livro +</BotaoCadastro>} modal>
-            <div>
                 <BotaoFechar title="Fechar">✖</BotaoFechar>
                 <h3>📋 Cadrastrar um novo livro</h3>
                 <form onSubmit={onSubmit}>
@@ -159,7 +165,6 @@ const CadastroPopup = (props) => {
                     </SelecaoEstilizada>
                     <BotaoSubmit type="submit"/>
                 </form>
-            </div>
         </StyledPopup>
     );
 };

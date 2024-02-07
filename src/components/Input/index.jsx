@@ -13,6 +13,7 @@ const InputEstilizado = styled.div`
         border-radius: 3px;
         box-sizing: border-box;
         width: 100%;
+        height: 115%;
         font-family: "Comic Sans MS", sans-serif;
         
         &:focus-within {
@@ -34,7 +35,11 @@ const Input = (props) => {
         <InputEstilizado>
             <label>
                 {props.label}
-                <input value={props.valor} onChange={aoDigitar} required/>
+                <input
+                    value={props.valor}
+                    onChange={aoDigitar}
+                    required
+                />
             </label>
         </InputEstilizado>
     );

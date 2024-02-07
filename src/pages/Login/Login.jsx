@@ -1,7 +1,9 @@
 import EstilosGlobais from "../../components/EstilosGlobais/index.jsx";
 import styled from "styled-components";
 import Input from "../../components/Input/index.jsx";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import BotaoSenha from "../../components/BotaoSenha/index.jsx";
+import ContaProvider, {ContaContext} from "../../context/ContaContext.jsx";
 
 const PageContainer = styled.div`
     background-color: ghostwhite;
@@ -81,8 +83,7 @@ const BotaoEntrar = styled.input`
 
 const Login = () => {
 
-	const [nomeEntrar, setNomeEntrar] = useState("");
-	const [senhaEntrar, setSenhaEntrar] = useState("");
+	const {nomeEntrar, setNomeEntrar, senhaEntrar, setSenhaEntrar} = useContext(ContaContext)
 
 	const onSubmitEntrar = (evento) => {
 		evento.preventDefault();
@@ -93,7 +94,7 @@ const Login = () => {
 	};
 
 	return (
-		<div>
+		<ContaProvider>
 			<EstilosGlobais/>
 			<PageContainer>
 				<LoginContainer>
@@ -105,8 +106,7 @@ const Login = () => {
 							valor={nomeEntrar}
 							aoAlterar={nome => setNomeEntrar(nome)}
 						/>
-						<Input
-							label="Senha:"
+						<BotaoSenha
 							valor={senhaEntrar}
 							aoAlterar={senha => setSenhaEntrar(senha)}
 						/>
@@ -117,7 +117,7 @@ const Login = () => {
 					</form>
 				</LoginContainer>
 			</PageContainer>
-		</div>
+		</ContaProvider>
 	);
 };
 

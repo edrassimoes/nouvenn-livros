@@ -35,13 +35,20 @@ const LivroEstilizado = styled.div`
     
 `
 
-const LivroGaleria = ({ titulo, autor, icone }) => {
+const LivroGaleria = ({ titulo, autor, idioma, paginas, editora, icone, dono }) => {
     return (
         <>
             <LivroEstilizado>
                 <p> {icone} Título: {titulo} | Autor: {autor}</p>
                 <div>
-                    <LivroPopup/>
+                    <LivroPopup
+                        titulo={titulo}
+                        autor={autor}
+                        idioma={idioma}
+                        paginas={paginas}
+                        editora={editora}
+                        dono={dono}
+                    />
                     <button>Solicitar</button>
                 </div>
             </LivroEstilizado>

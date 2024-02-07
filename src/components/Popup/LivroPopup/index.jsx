@@ -1,5 +1,7 @@
 import Popup from "reactjs-popup";
 import styled from "styled-components";
+import {LivroContext} from "../../../context/LivroContext.jsx";
+import {useContext} from "react";
 
 const BotaoInfo = styled.button`
     cursor: pointer;
@@ -49,17 +51,18 @@ const StyledPopup = styled(Popup)`
     }
 `
 
-const LivroPopup = () => {
+const LivroPopup = ({titulo, autor, paginas, editora, dono}) => {
+
     return (
         <StyledPopup trigger={<BotaoInfo title="Informações">...</BotaoInfo>} modal closeOnDocumentClick>
             <div className=".popup-content">
                 <button title="Fechar">✖</button>
                 <p>📖 Informações sobre este livro:</p>
-                <p>Título: O abc</p>
-                <p>Autor: Xuxa</p>
-                <p>Número de páginas: 123</p>
-                <p>Editora: Antofágica</p>
-                <p>Dono: edrassimoes</p>
+                <p>Título: {titulo}</p>
+                <p>Autor: {autor}</p>
+                <p>Número de páginas: {paginas}</p>
+                <p>Editora: {editora}</p>
+                <p>Dono: {dono}</p>
             </div>
         </StyledPopup>
     );

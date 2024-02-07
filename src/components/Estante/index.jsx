@@ -30,7 +30,11 @@ const Estante = (props) => {
                     <LivroGaleria
                         titulo={livro.titulo}
                         autor={livro.autor}
+                        idioma={livro.idioma}
+                        paginas={livro.paginas}
+                        editora={livro.editora}
                         icone={livro.icone}
+                        dono={livro.dono ? livro.dono : null}
                     />
                 )}
             </ScrollableDiv>

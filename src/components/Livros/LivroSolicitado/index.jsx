@@ -42,13 +42,20 @@ const BotaoNegar = styled.button`
     }
 `
 
-const LivroSolicitado = () => {
+const LivroSolicitado = ({ titulo, autor, idioma, paginas, editora, icone, dono }) => {
     return (
         <>
             <LivroEstilizado>
-                <p> 📚 Titulo | Autor | Editora | Dono</p>
+                <p> {icone} Título: {titulo} | Autor: {autor}</p>
                 <div>
-                    <LivroPopup/>
+                    <LivroPopup
+                        titulo={titulo}
+                        autor={autor}
+                        idioma={idioma}
+                        paginas={paginas}
+                        editora={editora}
+                        dono={dono}
+                    />
                     <BotaoAceitar title="Aprovar">✅</BotaoAceitar>
                     <BotaoNegar title="Negar">❌</BotaoNegar>
                 </div>

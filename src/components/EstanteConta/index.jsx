@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import CadastroPopup from "../Popup/CadastroPopup/index.jsx";
 
-
 const EstanteEstilizada = styled.div`
     background-color: white;
     border: black 2px solid;

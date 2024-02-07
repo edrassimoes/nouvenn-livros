@@ -1,7 +1,9 @@
 import Input from "../../components/Input/index.jsx";
 import styled from "styled-components";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import EstilosGlobais from "../../components/EstilosGlobais/index.jsx";
+import BotaoSenha from "../../components/BotaoSenha/index.jsx";
+import ContaProvider, {ContaContext} from "../../context/ContaContext.jsx";
 
 const PageContainer = styled.div`
     background-color: ghostwhite;
@@ -81,8 +83,7 @@ const BotaoCriar = styled.input`
 
 const Signup = () => {
 
-	const [nomeCriar, setNomeCriar] = useState("");
-	const [senhaCriar, setSenhaCriar] = useState("");
+	const {nomeCriar, setNomeCriar, senhaCriar, setSenhaCriar} = useContext(ContaContext)
 
 	const onSubmitCriar = (evento) => {
 		evento.preventDefault()
@@ -93,7 +94,7 @@ const Signup = () => {
 	}
 
 	return (
-		<div>
+		<ContaProvider>
 			<EstilosGlobais/>
 			<PageContainer>
 				<SingupContainer>
@@ -117,7 +118,7 @@ const Signup = () => {
 					</form>
 				</SingupContainer>
 			</PageContainer>
-		</div>
+		</ContaProvider>
 	);
 };
 
