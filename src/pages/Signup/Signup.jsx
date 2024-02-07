@@ -94,7 +94,7 @@ const Signup = () => {
 	}
 
 	return (
-		<ContaProvider>
+		<div>
 			<EstilosGlobais/>
 			<PageContainer>
 				<SingupContainer>
@@ -118,7 +118,7 @@ const Signup = () => {
 					</form>
 				</SingupContainer>
 			</PageContainer>
-		</ContaProvider>
+		</div>
 	);
 };
 

@@ -94,7 +94,7 @@ const Login = () => {
 	};
 
 	return (
-		<ContaProvider>
+		<div>
 			<EstilosGlobais/>
 			<PageContainer>
 				<LoginContainer>
@@ -117,7 +117,7 @@ const Login = () => {
 					</form>
 				</LoginContainer>
 			</PageContainer>
-		</ContaProvider>
+		</div>
 	);
 };
 
