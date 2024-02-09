@@ -14,13 +14,6 @@ const PageContainer = styled.div`
     align-items: center;
     flex-direction: column;
 
-    h1 {
-        font-family: "Comic Sans MS", sans-serif;
-        background-color: white;
-        border: 20px solid white;
-        border-radius: 10px;
-    }
-
 `;
 
 const SingupContainer = styled.div`
@@ -34,10 +27,22 @@ const SingupContainer = styled.div`
     font-family: "Comic Sans MS", sans-serif;
     padding: 20px;
 
+    h1 {
+        font-family: "Comic Sans MS", sans-serif;
+        background-color: white;
+        border: 20px solid white;
+        border-radius: 10px;
+    }
+
     h2 {
         block-size: fit-content;
         font-size: 100px;
-        margin: 10px;
+        margin: 20px;
+    }
+
+    h3 {
+        margin: 0;
+        color: darkblue;
     }
 
     section {
@@ -83,7 +88,7 @@ const BotaoCriar = styled.input`
 
 const Signup = () => {
 
-	const {nomeCriar, setNomeCriar, senhaCriar, setSenhaCriar} = useContext(ContaContext)
+	const {nomeCriar, setNomeCriar, emailCriar, setEmailCriar, senhaCriar, setSenhaCriar} = useContext(ContaContext)
 
 	const onSubmitCriar = (evento) => {
 		evento.preventDefault()
@@ -99,12 +104,19 @@ const Signup = () => {
 			<PageContainer>
 				<SingupContainer>
 					<h1>✨ Criar uma conta ✨</h1>
+					<h3>Ficamos felizes em recebelo(a) em nossa comunidade!</h3>
+					<h3>Preencha as informações abaixo para continuar.</h3>
 					<h2>👤</h2>
 					<form>
 						<Input
 							label="Nome de usuário:"
 							valor={nomeCriar}
 							aoAlterar={nome => setNomeCriar(nome)}
+						/>
+						<Input
+							label="E-mail:"
+							valor={emailCriar}
+							aoAlterar={email => setEmailCriar(email)}
 						/>
 						<Input
 							label="Senha:"

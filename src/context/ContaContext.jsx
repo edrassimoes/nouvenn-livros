@@ -7,6 +7,7 @@ const ContaProvider = ({children}) => {
 	// SignUp
 	const [nomeCriar, setNomeCriar] = useState("");
 	const [senhaCriar, setSenhaCriar] = useState("");
+	const [emailCriar, setEmailCriar] = useState('');
 
 	// LogIn, Home
 	const [nomeEntrar, setNomeEntrar] = useState("");
@@ -17,6 +18,7 @@ const ContaProvider = ({children}) => {
 		<ContaContext.Provider value={{
 			nomeCriar, setNomeCriar,
 			senhaCriar, setSenhaCriar,
+			emailCriar, setEmailCriar,
 			nomeEntrar, setNomeEntrar,
 			senhaEntrar, setSenhaEntrar,
 		}}>

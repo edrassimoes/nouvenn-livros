@@ -1,5 +1,7 @@
 import Popup from "reactjs-popup";
 import styled from "styled-components";
+import {useContext} from "react";
+import {ContaContext} from "../../../context/ContaContext.jsx";
 
 const BotaoUsuario = styled.button`
     cursor: pointer;
@@ -51,10 +53,14 @@ const StyledPopup = styled(Popup)`
 `
 
 const ContaPopup = () => {
+
+    const {} = useContext(ContaContext)
+
     return (
         <StyledPopup trigger={<BotaoUsuario>Minhas informações 👤</BotaoUsuario>} closeOnDocumentClick>
             <div>
                 <p>Nome de usuário: edrassimoes</p>
+                <p>E-mail: edrassimoes@gmail.com</p>
                 <p>Senha: 123</p>
             </div>
         </StyledPopup>

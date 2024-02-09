@@ -19,14 +19,31 @@ const ContainerImagem = styled.div`
     
 `
 
+const Quotes = styled.section`
+    
+    margin: 10px 0;
+   
+    p {
+        font-style: italic;
+        margin: 0;
+    }
+    
+`
+
 const Banner = () => {
 
     const {livros} = useContext(LivroContext)
 
     return (
         <ContainerImagem>
+            <Quotes>
+                <p>"Frase do dia..."</p>
+                <p>Autor</p>
+            </Quotes>
             <img src="/assets/bookshelf.png" alt=""/>
-            {livros.length > 0 ? null : <p>Não há livros em nossa coleção no momento 🙁</p>}
+            {livros.length > 0 ?
+                <p>Seja bem-vindo(a) a nossa estante coletiva 😄</p> :
+                <p>Não há livros em nossa coleção no momento 🙁</p> }
         </ContainerImagem>
     );
 };

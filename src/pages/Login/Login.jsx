@@ -1,9 +1,9 @@
 import EstilosGlobais from "../../components/EstilosGlobais/index.jsx";
 import styled from "styled-components";
 import Input from "../../components/Input/index.jsx";
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import BotaoSenha from "../../components/BotaoSenha/index.jsx";
-import ContaProvider, {ContaContext} from "../../context/ContaContext.jsx";
+import {ContaContext} from "../../context/ContaContext.jsx";
 
 const PageContainer = styled.div`
     background-color: ghostwhite;
@@ -13,14 +13,6 @@ const PageContainer = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
-    h1 {
-        font-family: "Comic Sans MS", sans-serif;
-        background-color: white;
-        border: 20px solid white;
-        border-radius: 10px;
-    }
-
 `;
 
 const LoginContainer = styled.div`
@@ -33,33 +25,46 @@ const LoginContainer = styled.div`
     border-radius: 5px;
     font-family: "Comic Sans MS", sans-serif;
     padding: 20px;
-	
-	h2 {
-		block-size: fit-content;
-		font-size: 100px;
-		margin: 10px;
-	}
+
+    h1 {
+        font-family: "Comic Sans MS", sans-serif;
+        background-color: white;
+        border: 20px solid white;
+        border-radius: 10px;
+    }
+
+    h2 {
+        block-size: fit-content;
+        font-size: 100px;
+        margin: 20px;
+
+    }
+
+    h3 {
+        margin: 0;
+        color: darkblue;
+    }
 
     section {
         display: flex;
         align-items: center;
         text-align: center;
         flex-direction: column;
-		
-		p {
-			font-size: 18px;
-		}
-		
-		a {
-			cursor: pointer;
-			color: darkgreen;
-			
-			&:hover {
-				font-weight: bold;
-			}
-			
-		}
-		
+
+        p {
+            font-size: 18px;
+        }
+
+        a {
+            cursor: pointer;
+            color: darkgreen;
+
+            &:hover {
+                font-weight: bold;
+            }
+
+        }
+
     }
 
 `;
@@ -99,6 +104,8 @@ const Login = () => {
 			<PageContainer>
 				<LoginContainer>
 					<h1>📚 Emprestimo de Livros</h1>
+					<h3>Seja bem-vindo(a) a nossa comunidade literária!</h3>
+					<h3 id="teste">Faça seu login para continuar.</h3>
 					<h2>👤</h2>
 					<form>
 						<Input

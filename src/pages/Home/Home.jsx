@@ -1,14 +1,55 @@
+import styled from "styled-components";
 import EstilosGlobais from "../../components/EstilosGlobais/index.jsx";
-import Container from "../../components/Container/index.jsx";
-import {LivroProvider} from "../../context/LivroContext.jsx";
-import ContaProvider, {ContaContext} from "../../context/ContaContext.jsx";
+import {LivroContext, LivroProvider} from "../../context/LivroContext.jsx";
+import Header from "../../components/Header/index.jsx";
+import Banner from "../../components/Banner/index.jsx";
+import Estante from "../../components/Estante/index.jsx";
+import EstanteConta from "../../components/EstanteConta/index.jsx";
+import {useContext} from "react";
+
+const ContainerEstilizado = styled.div`
+    background-color: ghostwhite;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+`;
+
+const BoxEstilizado = styled.div`
+    width: 95%;
+    background-color: lightsteelblue;
+    border: black 2px solid;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 8px 10px;
+`;
 
 function Home() {
+
+	const {livros} = useContext(LivroContext);
+
 	return (
-		<LivroProvider>
+		<div>
 			<EstilosGlobais/>
-			<Container/>
-		</LivroProvider>
+			<ContainerEstilizado>
+				<BoxEstilizado>
+					<Header/>
+					<Banner/>
+					<Estante
+						livros={livros}
+					/>
+				</BoxEstilizado>
+				<BoxEstilizado>
+					<EstanteConta
+						// Ao passar os livros para as estantes, filtrar a propriedade que deseja!
+					/>
+				</BoxEstilizado>
+			</ContainerEstilizado>
+		</div>
 	);
 }
 
