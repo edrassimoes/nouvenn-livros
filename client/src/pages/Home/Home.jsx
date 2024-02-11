@@ -20,7 +20,7 @@ const ContainerEstilizado = styled.div`
 
 const BoxEstilizado = styled.div`
     width: 95%;
-    background-color: ${props => props.color};
+    background-color: lightsteelblue;
     border: black 2px solid;
     border-radius: 5px;
     padding: 10px;
@@ -35,12 +35,12 @@ const Home = () => {
         <div>
             <EstilosGlobais/>
             <ContainerEstilizado>
-                <BoxEstilizado color={"lightsteelblue"}>
+                <BoxEstilizado>
                     <Header/>
                     <Banner/>
                     <EstanteGeral/>
                 </BoxEstilizado>
-                <BoxEstilizado color={"saddlebrown"}>
+                <BoxEstilizado>
                     <EstanteConta/>
                     <EstanteEmprestimos/>
                     <EstanteSolicitacoes/>

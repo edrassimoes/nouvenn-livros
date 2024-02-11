@@ -7,12 +7,13 @@ const ContainerImagem = styled.div`
     flex-direction: column;
 
     img {
-        margin-top: 10px;
+        margin: 10px 0;
         width: 150px;
     }
 
     p {
         font-family: "Comic Sans MS", sans-serif;
+        margin-bottom: 0;
     }
 
 `

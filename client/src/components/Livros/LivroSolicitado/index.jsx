@@ -17,7 +17,11 @@ const LivroEstilizado = styled.div`
         gap: 5px;
         margin-right: 20px;
     }
-    
+
+    p {
+        font-family: "Comic Sans MS", sans-serif;
+    }
+
 `
 
 const BotaoAceitar = styled.button`

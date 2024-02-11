@@ -17,19 +17,22 @@ const LivroEstilizado = styled.div`
         gap: 5px;
         margin-right: 20px;
     }
-    
-    button {
-        cursor: pointer;
-        font-family: "Comic Sans MS", sans-serif;
 
-        &:hover {
-            background-color: red;
-            border-radius: 3px;
-            color: white;
-        }
-        
+    p {
+        font-family: "Comic Sans MS", sans-serif;
     }
-    
+
+
+`
+
+const BotaoRemover = styled.button`
+    cursor: pointer;
+    font-family: "Comic Sans MS", sans-serif;
+    &:hover {
+        background-color: red;
+        border-radius: 3px;
+        color: white;
+    }
 `
 
 const LivroProprio = ({ titulo, autor, idioma, paginas, editora, icone, dono }) => {
@@ -46,7 +49,7 @@ const LivroProprio = ({ titulo, autor, idioma, paginas, editora, icone, dono }) 
                         editora={editora}
                         dono={dono}
                     />
-                    <button>Remover</button>
+                    <BotaoRemover>Remover</BotaoRemover>
                 </div>
             </LivroEstilizado>
         </>

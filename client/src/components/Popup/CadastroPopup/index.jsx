@@ -31,6 +31,7 @@ const StyledPopup = styled(Popup)`
 `
 
 const BotaoCadastro = styled.button`
+    height: 35px;
     border-radius: 3px;
     cursor: pointer;
     font-family: "Comic Sans MS", sans-serif;

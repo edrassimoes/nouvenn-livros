@@ -7,7 +7,7 @@ const BotaoInfo = styled.button`
     margin-right: 5px;
 
     &:hover {
-        background-color: orange;
+        background-color: slategray;
         border: 2px solid black;
         border-radius: 3px;
     }
@@ -52,7 +52,7 @@ const StyledPopup = styled(Popup)`
 const LivroPopup = ({titulo, autor, paginas, editora, dono}) => {
 
     return (
-        <StyledPopup trigger={<BotaoInfo title="Informações">...</BotaoInfo>} modal closeOnDocumentClick>
+        <StyledPopup trigger={<BotaoInfo title="Informações">📖</BotaoInfo>} modal closeOnDocumentClick>
             <div>
                 <button title="Fechar">✖</button>
                 <p><b>📖 Informações sobre este livro:</b></p>

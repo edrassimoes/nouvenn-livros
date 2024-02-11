@@ -11,24 +11,26 @@ const LivroEstilizado = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    
+
     div {
         display: flex;
         gap: 5px;
         margin-right: 20px;
     }
-    
-    button {
-        cursor: pointer;
+
+    p {
         font-family: "Comic Sans MS", sans-serif;
-        
-        &:hover {
-            background-color: deepskyblue;
-            border-radius: 3px;
-        }
-        
     }
-    
+
+`
+
+const BotaoDevolver = styled.button`
+    cursor: pointer;
+    font-family: "Comic Sans MS", sans-serif;
+    &:hover {
+        background-color: deepskyblue;
+        border-radius: 3px;
+    }
 `
 
 const LivroRecebido = ({ titulo, autor, idioma, paginas, editora, icone, dono }) => {
@@ -45,7 +47,7 @@ const LivroRecebido = ({ titulo, autor, idioma, paginas, editora, icone, dono })
                         editora={editora}
                         dono={dono}
                     />
-                    <button>Devolver</button>
+                    <BotaoDevolver>Devolver</BotaoDevolver>
                 </div>
             </LivroEstilizado>
         </>
