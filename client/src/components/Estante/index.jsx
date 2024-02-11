@@ -28,6 +28,7 @@ const Estante = (props) => {
             <ScrollableDiv>
                 {props.livros.map(livro =>
                     <LivroGaleria
+                        key={livro.id}
                         titulo={livro.titulo}
                         autor={livro.autor}
                         idioma={livro.idioma}

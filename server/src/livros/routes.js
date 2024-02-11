@@ -1,8 +1,12 @@
 import {Router} from "express";
-import {getTable} from "./controller.js";
+import {getLivroPorId, getTabelaLivros, addLivro, deleteLivro, updateLivro} from "./controller.js";
 
-const livrosRoutes = Router();
+const router = Router();
 
-livrosRoutes.get('/', getTable);
+router.get('/', getTabelaLivros);
+router.get('/:id', getLivroPorId);
+router.post('/', addLivro);
+router.delete('/:id', deleteLivro)
+router.put('/:id', updateLivro)
 
-export default livrosRoutes;
+export default router;

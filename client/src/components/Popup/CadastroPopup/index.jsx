@@ -1,9 +1,10 @@
 import Popup from "reactjs-popup";
 import styled from "styled-components";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import Input from "../../Input/index.jsx";
 import Radio from "../../Radio/index.jsx";
 import {LivroContext} from "../../../context/LivroContext.jsx";
+import axios from "axios";
 
 const StyledPopup = styled(Popup)`
 
@@ -61,11 +62,11 @@ const SelecaoEstilizada = styled.fieldset`
     display: flex;
     gap: 8px;
     align-items: center;
-    
+
     legend {
         font-family: "Comic Sans MS", sans-serif;
     }
-    
+
 `
 
 const BotaoSubmit = styled.input`
@@ -74,18 +75,17 @@ const BotaoSubmit = styled.input`
     font-family: "Comic Sans MS", sans-serif;
     position: absolute;
     right: 10px;
-    
+
     &:hover {
         cursor: pointer;
         background: lightgreen;
     }
-    
+
 `
 
 const CadastroPopup = (props) => {
 
     const {
-        livros, setLivros,
         titulo, setTitulo,
         autor, setAutor,
         idioma, setIdioma,
@@ -94,77 +94,81 @@ const CadastroPopup = (props) => {
         icone, setIcone
     } = useContext(LivroContext)
 
-    const onSubmit = (evento) => {
-        evento.preventDefault()
-        adicionarLivro({
-            titulo,
-            autor,
-            idioma,
-            paginas,
-            editora,
-            icone
+    const adicionarLivro = () => {
+        axios.post('http://localhost:3000/api/v1/livros', {
+            titulo: titulo,
+            autor: autor,
+            idioma: idioma,
+            paginas: paginas,
+            editora: editora,
+            dono: 'edras',
+            icone: icone
         })
+            .then(response => console.log(response))
+            .catch(error => console.log(error))
     }
 
-    function adicionarLivro(novoLivro) {
-        return setLivros([...livros, novoLivro])
+    const onSubmit = (evento) => {
+        evento.preventDefault()
+        adicionarLivro()
+        window.location.reload()
     }
 
     return (
         <StyledPopup trigger={<BotaoCadastro>Cadastrar um livro +</BotaoCadastro>} modal>
-                <BotaoFechar title="Fechar">✖</BotaoFechar>
-                <h3>📋 Cadrastrar um novo livro</h3>
-                <form onSubmit={onSubmit}>
-                    <Input
-                        label="Titulo:"
-                        valor={titulo}
-                        aoAlterar={valor => setTitulo(valor)}
+            <BotaoFechar title="Fechar">✖</BotaoFechar>
+            <h3>📋 Cadrastrar um novo livro</h3>
+            <form onSubmit={onSubmit}>
+                <Input
+                    label="Titulo:"
+                    valor={titulo}
+                    aoAlterar={valor => setTitulo(valor)}
+                />
+                <Input
+                    label="Autor:"
+                    valor={autor}
+                    aoAlterar={valor => setAutor(valor)}
+                />
+                <Input
+                    label="Idioma:"
+                    valor={idioma}
+                    aoAlterar={valor => setIdioma(valor)}
+                />
+                <Input
+                    label="Número de páginas:"
+                    valor={paginas}
+                    aoAlterar={valor => setPaginas(valor)}
+                />
+                <Input
+                    label="Editora:"
+                    valor={editora}
+                    aoAlterar={valor => setEditora(valor)}
+                />
+                <SelecaoEstilizada>
+                    <legend>Escolha um icone:</legend>
+                    <Radio
+                        id="red_book"
+                        valor="📕"
+                        aoAlterar={icone => setIcone(icone)}
                     />
-                    <Input
-                        label="Autor:"
-                        valor={autor}
-                        aoAlterar={valor => setAutor(valor)}
+                    <Radio
+                        id="green_book"
+                        valor="📗"
+                        aoAlterar={icone => setIcone(icone)}
                     />
-                    <Input
-                        label="Idioma:"
-                        valor={idioma}
-                        aoAlterar={valor => setIdioma(valor)}
+                    <Radio
+                        id="blue_book"
+                        valor="📘"
+                        aoAlterar={icone => setIcone(icone)}
                     />
-                    <Input
-                        label="Número de páginas:"
-                        valor={paginas}
-                        aoAlterar={valor => setPaginas(valor)}
+                    <Radio
+                        id="orange_book"
+                        valor="📙"
+                        aoAlterar={icone => setIcone(icone)}
                     />
-                    <Input
-                        label="Editora:"
-                        valor={editora}
-                        aoAlterar={valor => setEditora(valor)}
-                    />
-                    <SelecaoEstilizada>
-                        <legend>Escolha um icone:</legend>
-                        <Radio
-                            id="red_book"
-                            valor="📕"
-                            aoAlterar={icone => setIcone(icone)}
-                        />
-                        <Radio
-                            id="green_book"
-                            valor="📗"
-                            aoAlterar={icone => setIcone(icone)}
-                        />
-                        <Radio
-                            id="blue_book"
-                            valor="📘"
-                            aoAlterar={icone => setIcone(icone)}
-                        />
-                        <Radio
-                            id="orange_book"
-                            valor="📙"
-                            aoAlterar={icone => setIcone(icone)}
-                        />
-                    </SelecaoEstilizada>
-                    <BotaoSubmit type="submit"/>
-                </form>
+                </SelecaoEstilizada>
+                <BotaoSubmit type="submit"/>
+            </form>
         </StyledPopup>
     );
 };

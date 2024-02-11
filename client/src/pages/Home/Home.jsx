@@ -6,6 +6,7 @@ import Banner from "../../components/Banner/index.jsx";
 import Estante from "../../components/Estante/index.jsx";
 import EstanteConta from "../../components/EstanteConta/index.jsx";
 import {useContext, useEffect, useState} from "react";
+import axios from "axios";
 
 const ContainerEstilizado = styled.div`
     background-color: ghostwhite;
@@ -37,12 +38,12 @@ const Home = () => {
     }, []);
 
     const fetchData = async () => {
-
-        fetch('http://localhost:3000/books')
-            .then(res => res.json())
-            .then(data => {
-                setLivros(data)
-            })
+        try {
+            const response = await axios.get('http://localhost:3000/api/v1/livros');
+            setLivros(response.data)
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     return (

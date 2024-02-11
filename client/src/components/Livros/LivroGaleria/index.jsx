@@ -35,7 +35,7 @@ const LivroEstilizado = styled.div`
     
 `
 
-const LivroGaleria = ({ titulo, autor, idioma, paginas, editora, icone, dono }) => {
+const LivroGaleria = ({titulo, autor, idioma, paginas, editora, icone, dono }) => {
     return (
         <>
             <LivroEstilizado>
