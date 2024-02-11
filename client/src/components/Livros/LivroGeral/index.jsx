@@ -11,27 +11,31 @@ const LivroEstilizado = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    
+
     div {
         display: flex;
         gap: 5px;
         margin-right: 20px;
     }
-    
+
     button {
         cursor: pointer;
         font-family: "Comic Sans MS", sans-serif;
-        
+
         &:hover {
-            background-color: deepskyblue;
+            background-color: yellow;
             border-radius: 3px;
         }
-        
+
+    }
+    
+    p {
+        font-family: "Comic Sans MS", sans-serif;
     }
     
 `
 
-const LivroEmprestado = ({ titulo, autor, idioma, paginas, editora, icone, dono }) => {
+const LivroGeral = ({titulo, autor, idioma, paginas, editora, icone, dono }) => {
     return (
         <>
             <LivroEstilizado>
@@ -45,11 +49,11 @@ const LivroEmprestado = ({ titulo, autor, idioma, paginas, editora, icone, dono 
                         editora={editora}
                         dono={dono}
                     />
-                    <button>Devolver</button>
+                    <button>Solicitar</button>
                 </div>
             </LivroEstilizado>
         </>
     );
 };
 
-export default LivroEmprestado
+export default LivroGeral

@@ -11,31 +11,27 @@ const LivroEstilizado = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-
+    
     div {
         display: flex;
         gap: 5px;
         margin-right: 20px;
     }
-
+    
     button {
         cursor: pointer;
         font-family: "Comic Sans MS", sans-serif;
-
+        
         &:hover {
-            background-color: yellow;
+            background-color: deepskyblue;
             border-radius: 3px;
         }
-
-    }
-    
-    p {
-        font-family: "Comic Sans MS", sans-serif;
+        
     }
     
 `
 
-const LivroGaleria = ({titulo, autor, idioma, paginas, editora, icone, dono }) => {
+const LivroRecebido = ({ titulo, autor, idioma, paginas, editora, icone, dono }) => {
     return (
         <>
             <LivroEstilizado>
@@ -49,11 +45,11 @@ const LivroGaleria = ({titulo, autor, idioma, paginas, editora, icone, dono }) =
                         editora={editora}
                         dono={dono}
                     />
-                    <button>Solicitar</button>
+                    <button>Devolver</button>
                 </div>
             </LivroEstilizado>
         </>
     );
 };
 
-export default LivroGaleria
+export default LivroRecebido

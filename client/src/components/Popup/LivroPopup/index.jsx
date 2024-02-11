@@ -1,7 +1,5 @@
 import Popup from "reactjs-popup";
 import styled from "styled-components";
-import {LivroContext} from "../../../context/LivroContext.jsx";
-import {useContext} from "react";
 
 const BotaoInfo = styled.button`
     cursor: pointer;

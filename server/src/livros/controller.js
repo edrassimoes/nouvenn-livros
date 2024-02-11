@@ -1,5 +1,5 @@
 import pool from "../../db.js";
-import {createBook, deleteBook, getBookById, getBooks, updateBook} from "./queries.js";
+import {createBook, deleteBook, getBookById, getBookByUsername, getBooks, updateBook} from "./queries.js";
 
 export const getTabelaLivros = async (req, res) => {
     try {
@@ -18,6 +18,19 @@ export const getLivroPorId = async (req, res) => {
     try {
         pool.connect();
         const resultado = await pool.query(getBookById, [id]);
+        res.status(200).json(resultado.rows);
+    } catch (e) {
+        console.log(e)
+    } finally {
+        // fechar conexão
+    }
+}
+
+export const getLivroPorUsuario = async (req, res) => {
+    const username = (req.params.username);
+    try {
+        pool.connect();
+        const resultado = await pool.query(getBookByUsername, [username]);
         res.status(200).json(resultado.rows);
     } catch (e) {
         console.log(e)

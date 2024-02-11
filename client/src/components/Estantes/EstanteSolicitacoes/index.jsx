@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import LivroGaleria from "../Livros/LivroGaleria/index.jsx";
+import LivroSolicitado from "../../Livros/LivroSolicitado/index.jsx";
+import {useState} from "react";
 
 const EstanteEstilizada = styled.div`
     background-color: white;
@@ -21,13 +22,16 @@ const ScrollableDiv = styled.div`
     overflow: auto;
 `
 
-const Estante = (props) => {
+const EstanteSolicitacoes = (props) => {
+
+    const [livros, setLivros] = useState([])
+
     return (
         <EstanteEstilizada>
-            <TituloEstilizado>Livros disponíveis:</TituloEstilizado>
+            <TituloEstilizado>Livros solicitados:</TituloEstilizado>
             <ScrollableDiv>
-                {props.livros.map(livro =>
-                    <LivroGaleria
+                {livros.map(livro =>
+                    <LivroSolicitado
                         key={livro.id}
                         titulo={livro.titulo}
                         autor={livro.autor}
@@ -35,7 +39,7 @@ const Estante = (props) => {
                         paginas={livro.paginas}
                         editora={livro.editora}
                         icone={livro.icone}
-                        dono={livro.dono ? livro.dono : null}
+                        dono={livro.dono}
                     />
                 )}
             </ScrollableDiv>
@@ -43,4 +47,4 @@ const Estante = (props) => {
     );
 };
 
-export default Estante;
+export default EstanteSolicitacoes;

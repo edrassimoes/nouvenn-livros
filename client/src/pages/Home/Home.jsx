@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import EstilosGlobais from "../../components/EstilosGlobais/index.jsx";
-import {LivroContext} from "../../context/LivroContext.jsx";
 import Header from "../../components/Header/index.jsx";
 import Banner from "../../components/Banner/index.jsx";
-import Estante from "../../components/Estante/index.jsx";
-import EstanteConta from "../../components/EstanteConta/index.jsx";
-import {useContext, useEffect, useState} from "react";
-import axios from "axios";
+import EstanteGeral from "../../components/Estantes/EstanteGeral/index.jsx";
+import EstanteConta from "../../components/Estantes/EstanteConta/index.jsx";
+import {useContext} from "react";
+import {ContaContext} from "../../context/ContaContext.jsx";
+import EstanteEmprestimos from "../../components/Estantes/EstanteEmprestimos/index.jsx";
+import EstanteSolicitacoes from "../../components/Estantes/EstanteSolicitacoes/index.jsx";
 
 const ContainerEstilizado = styled.div`
     background-color: ghostwhite;
@@ -19,7 +20,7 @@ const ContainerEstilizado = styled.div`
 
 const BoxEstilizado = styled.div`
     width: 95%;
-    background-color: lightsteelblue;
+    background-color: ${props => props.color};
     border: black 2px solid;
     border-radius: 5px;
     padding: 10px;
@@ -30,37 +31,19 @@ const BoxEstilizado = styled.div`
 `;
 
 const Home = () => {
-
-    const {livros, setLivros} = useContext(LivroContext);
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-    const fetchData = async () => {
-        try {
-            const response = await axios.get('http://localhost:3000/api/livros');
-            setLivros(response.data)
-        } catch (error) {
-            console.error(error)
-        }
-    }
-
     return (
         <div>
             <EstilosGlobais/>
             <ContainerEstilizado>
-                <BoxEstilizado>
+                <BoxEstilizado color={"lightsteelblue"}>
                     <Header/>
                     <Banner/>
-                    <Estante
-                        livros={livros}
-                    />
+                    <EstanteGeral/>
                 </BoxEstilizado>
-                <BoxEstilizado>
-                    <EstanteConta
-                        // Ao passar os livros para as estantes, filtrar a propriedade que deseja!
-                    />
+                <BoxEstilizado color={"saddlebrown"}>
+                    <EstanteConta/>
+                    <EstanteEmprestimos/>
+                    <EstanteSolicitacoes/>
                 </BoxEstilizado>
             </ContainerEstilizado>
         </div>

@@ -1,9 +1,8 @@
 import Popup from "reactjs-popup";
 import styled from "styled-components";
-import {useContext, useEffect, useState} from "react";
+import {useState} from "react";
 import Input from "../../Input/index.jsx";
 import Radio from "../../Radio/index.jsx";
-import {LivroContext} from "../../../context/LivroContext.jsx";
 import axios from "axios";
 
 const StyledPopup = styled(Popup)`
@@ -85,14 +84,12 @@ const BotaoSubmit = styled.input`
 
 const CadastroPopup = (props) => {
 
-    const {
-        titulo, setTitulo,
-        autor, setAutor,
-        idioma, setIdioma,
-        paginas, setPaginas,
-        editora, setEditora,
-        icone, setIcone
-    } = useContext(LivroContext)
+    const [titulo, setTitulo] = useState('')
+    const [autor, setAutor] = useState('')
+    const [idioma, setIdioma] = useState('')
+    const [paginas, setPaginas] = useState('')
+    const [editora, setEditora] = useState('')
+    const [icone, setIcone] = useState('')
 
     const adicionarLivro = () => {
         axios.post('http://localhost:3000/api/livros', {
