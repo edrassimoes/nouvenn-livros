@@ -39,7 +39,7 @@ const Home = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/api/v1/livros');
+            const response = await axios.get('http://localhost:3000/api/livros');
             setLivros(response.data)
         } catch (error) {
             console.error(error)

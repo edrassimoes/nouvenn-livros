@@ -1,6 +1,5 @@
 import pool from "../../db.js";
 import {createBook, deleteBook, getBookById, getBooks, updateBook} from "./queries.js";
-import {parse} from "nodemon/lib/cli/index.js";
 
 export const getTabelaLivros = async (req, res) => {
     try {

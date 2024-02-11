@@ -95,7 +95,7 @@ const CadastroPopup = (props) => {
     } = useContext(LivroContext)
 
     const adicionarLivro = () => {
-        axios.post('http://localhost:3000/api/v1/livros', {
+        axios.post('http://localhost:3000/api/livros', {
             titulo: titulo,
             autor: autor,
             idioma: idioma,
