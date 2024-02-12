@@ -14,7 +14,8 @@ const StyledPopup = styled(Popup)`
     div &-content {
         margin: auto;
         background: white;
-        border: 2px solid black;
+        outline: 3px solid black;
+        border: 8px solid lightgreen;
         border-radius: 3px;
         box-shadow: rgba(0, 0, 0, 0.16) 0 0 3px;
         padding: 10px;
@@ -51,12 +52,13 @@ const BotaoFechar = styled.button`
     cursor: pointer;
     position: absolute;
     display: block;
-    line-height: 20px;
-    right: -5px;
-    top: -10px;
+    right: -16px;
+    top: -16px;
     border: 2px solid black;
     border-radius: 3px;
     background: red;
+    width: 7%;
+    height: 7%;
     &:hover {
         scale: 1.3;
     }
@@ -127,7 +129,7 @@ const CadastroPopup = () => {
     }
 
     return (
-        <StyledPopup trigger={<BotaoCadastro>Cadastrar um livro +</BotaoCadastro>} modal closeOnDocumentClick={false}>
+        <StyledPopup trigger={<BotaoCadastro>📋 Cadastrar um novo livro</BotaoCadastro>} modal closeOnDocumentClick={false}>
             {close => (
                 <div>
                     <BotaoFechar title="Fechar" onClick={()=>{close()}}>X</BotaoFechar>

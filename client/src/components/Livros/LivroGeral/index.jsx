@@ -19,6 +19,11 @@ const LivroEstilizado = styled.div`
         display: flex;
         gap: 5px;
         margin-right: 20px;
+        @media (max-width: 600px) {
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
     }
     
     p {

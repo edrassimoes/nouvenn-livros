@@ -25,10 +25,11 @@ const StyledPopup = styled(Popup)`
     div &-content {
         margin: auto;
         background: white;
-        border: 2px solid black;
+        outline: 3px solid black;
+        border: 5px solid slategray;
         border-radius: 3px;
         box-shadow: rgba(0, 0, 0, 0.16) 0 0 3px;
-        padding: 10px;
+        padding: 20px;
         width: fit-content;
         height: fit-content;
 
@@ -38,8 +39,8 @@ const StyledPopup = styled(Popup)`
             position: absolute;
             display: block;
             line-height: 20px;
-            right: -5px;
-            top: -10px;
+            right: -12px;
+            top: -16px;
             border: 2px solid black;
             border-radius: 3px;
             background: red;

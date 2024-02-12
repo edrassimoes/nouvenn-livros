@@ -7,9 +7,10 @@ const StyledPopup = styled(Popup)`
     
     div &-content {
         height: 135px;
-        margin-top: 10px;
+        margin-top: 8px;
         background: white;
-        border: 2px solid black;
+        outline: 3px solid black;
+        border: 5px solid orange;
         border-radius: 3px;
         box-shadow: rgba(0, 0, 0, 0.16) 0 0 3px;
         padding: 10px;
@@ -33,12 +34,26 @@ const StyledPopup = styled(Popup)`
                 scale: 1.1;
             }
         }
-        
+
+        @media (max-width: 600px) {
+            position: relative;
+            right: 20px;
+            height: 170px;
+        }
         
     }
     
     &-arrow {
         color: black;
+        position: relative;
+        top: -12px;
+        width: 30px;
+
+        @media (max-width: 600px) {
+            position: relative;
+            left: 70px;
+        }
+        
     }
     
 `
