@@ -1,9 +1,11 @@
 import Input from "../../components/Input/index.jsx";
 import styled from "styled-components";
-import {useContext, useState} from "react";
+import {useState} from "react";
 import EstilosGlobais from "../../components/EstilosGlobais/index.jsx";
-import BotaoSenha from "../../components/BotaoSenha/index.jsx";
-import ContaProvider, {ContaContext} from "../../context/ContaContext.jsx";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
+import {toast, Toaster} from "sonner";
+
 
 const PageContainer = styled.div`
     background-color: ghostwhite;
@@ -64,7 +66,7 @@ const SingupContainer = styled.div`
             }
 
         }
-		
+
     }
 
 `;
@@ -88,50 +90,61 @@ const BotaoCriar = styled.input`
 
 const Signup = () => {
 
-	const {nomeCriar, setNomeCriar, emailCriar, setEmailCriar, senhaCriar, setSenhaCriar} = useContext(ContaContext)
+    const [nomeCriar, setNomeCriar] = useState('');
+    const [senhaCriar, setSenhaCriar] = useState('');
+    const [emailCriar, setEmailCriar] = useState('');
 
-	const onSubmitCriar = (evento) => {
-		evento.preventDefault()
-		console.log({
-			nomeCriar,
-			senhaCriar
-		})
-	}
+    const navigate = useNavigate();
 
-	return (
-		<div>
-			<EstilosGlobais/>
-			<PageContainer>
-				<SingupContainer>
-					<h1>✨ Criar uma conta ✨</h1>
-					<h3>Ficamos felizes em recebelo(a) em nossa comunidade!</h3>
-					<h3>Preencha as informações abaixo para continuar.</h3>
-					<h2>👤</h2>
-					<form>
-						<Input
-							label="Nome de usuário:"
-							valor={nomeCriar}
-							aoAlterar={nome => setNomeCriar(nome)}
-						/>
-						<Input
-							label="E-mail:"
-							valor={emailCriar}
-							aoAlterar={email => setEmailCriar(email)}
-						/>
-						<Input
-							label="Senha:"
-							valor={senhaCriar}
-							aoAlterar={senha => setSenhaCriar(senha)}
-						/>
-						<section>
-							<BotaoCriar type="submit" value="Cadastrar-se" onClick={onSubmitCriar}/>
-							<p>Já possue uma conta? <a>Fazer login</a></p>
-						</section>
-					</form>
-				</SingupContainer>
-			</PageContainer>
-		</div>
-	);
+    const addUsuario = () => {
+        axios.post('http://localhost:3000/api/usuarios', {
+            username: nomeCriar ? nomeCriar : null,
+            email: emailCriar ? emailCriar : null,
+            password: senhaCriar ? senhaCriar : null,
+        })
+            .then(response => console.log(response))
+    }
+
+    const onSubmitCriar = (evento) => {
+        evento.preventDefault();
+        addUsuario();
+    }
+
+    return (
+        <div>
+            <EstilosGlobais/>
+            <PageContainer>
+                <Toaster richColors position="bottom-right" />
+                <SingupContainer>
+                    <h1>✨ Criar uma conta ✨</h1>
+                    <h3>Ficamos felizes em recebelo(a) em nossa comunidade!</h3>
+                    <h3>Preencha as informações abaixo para continuar.</h3>
+                    <h2>👤</h2>
+                    <form>
+                        <Input
+                            label="Nome de usuário:"
+                            valor={nomeCriar}
+                            aoAlterar={nome => setNomeCriar(nome)}
+                        />
+                        <Input
+                            label="E-mail:"
+                            valor={emailCriar}
+                            aoAlterar={email => setEmailCriar(email)}
+                        />
+                        <Input
+                            label="Senha:"
+                            valor={senhaCriar}
+                            aoAlterar={senha => setSenhaCriar(senha)}
+                        />
+                        <section>
+                            <BotaoCriar type="submit" value="Cadastrar-se" onClick={onSubmitCriar}/>
+                            <p>Já possue uma conta? <a onClick={()=> {navigate('/')}}>Fazer login</a></p>
+                        </section>
+                    </form>
+                </SingupContainer>
+            </PageContainer>
+        </div>
+    );
 };
 
 export default Signup;

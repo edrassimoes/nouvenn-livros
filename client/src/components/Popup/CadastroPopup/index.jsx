@@ -39,6 +39,7 @@ const BotaoCadastro = styled.button`
 
     &:hover {
         background-color: lightgreen;
+        scale: 1.1;
     }
 
 `
@@ -53,6 +54,9 @@ const BotaoFechar = styled.button`
     border: 2px solid black;
     border-radius: 3px;
     background: red;
+    &:hover {
+        scale: 1.3;
+    }
 `
 
 const SelecaoEstilizada = styled.fieldset`
@@ -79,11 +83,12 @@ const BotaoSubmit = styled.input`
     &:hover {
         cursor: pointer;
         background: lightgreen;
+        scale: 1.1;
     }
 
 `
 
-const CadastroPopup = (props) => {
+const CadastroPopup = () => {
 
     const [titulo, setTitulo] = useState('')
     const [autor, setAutor] = useState('')
@@ -107,66 +112,70 @@ const CadastroPopup = (props) => {
     }
 
     const onSubmit = (evento) => {
-        evento.preventDefault()
-        adicionarLivro()
+        evento.preventDefault();
+        adicionarLivro();
         window.location.reload()
     }
 
     return (
-        <StyledPopup trigger={<BotaoCadastro>Cadastrar um livro +</BotaoCadastro>} modal>
-            <BotaoFechar title="Fechar">✖</BotaoFechar>
-            <h3>📋 Cadrastrar um novo livro</h3>
-            <form onSubmit={onSubmit}>
-                <Input
-                    label="Titulo:"
-                    valor={titulo}
-                    aoAlterar={valor => setTitulo(valor)}
-                />
-                <Input
-                    label="Autor:"
-                    valor={autor}
-                    aoAlterar={valor => setAutor(valor)}
-                />
-                <Input
-                    label="Idioma:"
-                    valor={idioma}
-                    aoAlterar={valor => setIdioma(valor)}
-                />
-                <Input
-                    label="Número de páginas:"
-                    valor={paginas}
-                    aoAlterar={valor => setPaginas(valor)}
-                />
-                <Input
-                    label="Editora:"
-                    valor={editora}
-                    aoAlterar={valor => setEditora(valor)}
-                />
-                <SelecaoEstilizada>
-                    <legend>Escolha um icone:</legend>
-                    <Radio
-                        id="red_book"
-                        valor="📕"
-                        aoAlterar={icone => setIcone(icone)}
-                    />
-                    <Radio
-                        id="green_book"
-                        valor="📗"
-                        aoAlterar={icone => setIcone(icone)}
-                    />
-                    <Radio
-                        id="blue_book"
-                        valor="📘"
-                        aoAlterar={icone => setIcone(icone)}
-                    />
-                    <Radio
-                        id="orange_book"
-                        valor="📙"
-                        aoAlterar={icone => setIcone(icone)}
-                    />
-                </SelecaoEstilizada>
-                <BotaoSubmit type="submit"/>
-            </form>
+        <StyledPopup trigger={<BotaoCadastro>Cadastrar um livro +</BotaoCadastro>} modal closeOnDocumentClick={false}>
+            {close => (
+                <div>
+                    <BotaoFechar title="Fechar" onClick={()=>{close()}}>✖</BotaoFechar>
+                    <h3>📋 Cadrastrar um novo livro</h3>
+                    <form onSubmit={onSubmit}>
+                        <Input
+                            label="Titulo:"
+                            valor={titulo}
+                            aoAlterar={valor => setTitulo(valor)}
+                        />
+                        <Input
+                            label="Autor:"
+                            valor={autor}
+                            aoAlterar={valor => setAutor(valor)}
+                        />
+                        <Input
+                            label="Idioma:"
+                            valor={idioma}
+                            aoAlterar={valor => setIdioma(valor)}
+                        />
+                        <Input
+                            label="Número de páginas:"
+                            valor={paginas}
+                            aoAlterar={valor => setPaginas(valor)}
+                        />
+                        <Input
+                            label="Editora:"
+                            valor={editora}
+                            aoAlterar={valor => setEditora(valor)}
+                        />
+                        <SelecaoEstilizada>
+                            <legend>Escolha um icone:</legend>
+                            <Radio
+                                id="red_book"
+                                valor="📕"
+                                aoAlterar={icone => setIcone(icone)}
+                            />
+                            <Radio
+                                id="green_book"
+                                valor="📗"
+                                aoAlterar={icone => setIcone(icone)}
+                            />
+                            <Radio
+                                id="blue_book"
+                                valor="📘"
+                                aoAlterar={icone => setIcone(icone)}
+                            />
+                            <Radio
+                                id="orange_book"
+                                valor="📙"
+                                aoAlterar={icone => setIcone(icone)}
+                            />
+                        </SelecaoEstilizada>
+                        <BotaoSubmit type="submit"/>
+                    </form>
+                </div>
+            )}
         </StyledPopup>
     );
 };

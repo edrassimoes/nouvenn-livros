@@ -15,6 +15,7 @@ const SearchBarEstilizada = styled.div`
             background-color: slategray;
             border: 2px solid black;
             border-radius: 3px;
+            scale: 1.1;
         }
         
     }

@@ -21,6 +21,7 @@ const BotaoSair = styled.button`
         background-color: red;
         color: white;
         border-radius: 3px;
+        scale: 1.1;
     }
     
     @media (max-width: 600px) {

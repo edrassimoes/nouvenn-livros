@@ -18,7 +18,7 @@ const TituloEstilizado = styled.p`
     margin: 0 0 0 7px;
 `
 
-const EstanteConta = (props) => {
+const EstanteConta = () => {
 
     const [livros, setLivros] = useState([])
 
@@ -38,9 +38,7 @@ const EstanteConta = (props) => {
     return (
         <EstanteEstilizada>
             <TituloEstilizado>Meus livros</TituloEstilizado>
-            <CadastroPopup
-                aoCadastrarLivro={props.aoCadastrarLivro}
-            />
+            <CadastroPopup/>
             {livros.map(livro =>
                 <LivroProprio
                     key={livro.id}

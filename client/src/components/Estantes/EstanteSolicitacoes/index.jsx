@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import LivroSolicitado from "../../Livros/LivroSolicitado/index.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 const EstanteEstilizada = styled.div`
     background-color: white;
@@ -22,9 +23,22 @@ const ScrollableDiv = styled.div`
     overflow: auto;
 `
 
-const EstanteSolicitacoes = (props) => {
+const EstanteSolicitacoes = () => {
 
     const [livros, setLivros] = useState([])
+
+    useEffect(() => {
+        getEmprestimoPeloDono();
+    }, []);
+
+    const getEmprestimoPeloDono = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3000/api/emprestimos/owner/edras`);
+            setLivros(response.data)
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     return (
         <EstanteEstilizada>

@@ -32,6 +32,7 @@ const BotaoAceitar = styled.button`
         background-color: white;
         border: 2px solid darkgreen;
         border-radius: 3px;
+        scale: 1.1;
     }
 `
 
@@ -43,6 +44,7 @@ const BotaoNegar = styled.button`
         background-color: white;
         border: 2px solid darkred;
         border-radius: 3px;
+        scale: 1.1;
     }
 `
 

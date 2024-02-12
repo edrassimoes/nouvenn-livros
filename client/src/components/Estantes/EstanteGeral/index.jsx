@@ -23,7 +23,7 @@ const ScrollableDiv = styled.div`
     overflow: auto;
 `
 
-const EstanteGeral = (props) => {
+const EstanteGeral = () => {
 
     const [livros, setLivros] = useState([])
 

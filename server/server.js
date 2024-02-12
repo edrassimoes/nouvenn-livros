@@ -13,4 +13,4 @@ app.use('/api/livros', livrosRoutes);
 app.use('/api/usuarios', usuariosRoutes)
 app.use('/api/emprestimos', emprestimosRoutes)
 
-app.listen(port, () => console.log(`App listening on port ${port}.`));
+app.listen(port, () => console.log(`Server listening on port ${port}.`));

@@ -30,6 +30,7 @@ const BotaoSolicitar = styled.button`
     &:hover {
         background-color: yellow;
         border-radius: 3px;
+        scale: 1.1;
     }
 `
 

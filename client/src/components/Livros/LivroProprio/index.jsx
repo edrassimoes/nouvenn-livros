@@ -32,6 +32,7 @@ const BotaoRemover = styled.button`
         background-color: red;
         border-radius: 3px;
         color: white;
+        scale: 1.1;
     }
 `
 

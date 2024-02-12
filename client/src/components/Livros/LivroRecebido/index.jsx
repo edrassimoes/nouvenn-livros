@@ -30,6 +30,7 @@ const BotaoDevolver = styled.button`
     &:hover {
         background-color: deepskyblue;
         border-radius: 3px;
+        scale: 1.1;
     }
 `
 

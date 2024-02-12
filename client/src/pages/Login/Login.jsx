@@ -1,9 +1,12 @@
 import EstilosGlobais from "../../components/EstilosGlobais/index.jsx";
 import styled from "styled-components";
 import Input from "../../components/Input/index.jsx";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import BotaoSenha from "../../components/BotaoSenha/index.jsx";
 import {ContaContext} from "../../context/ContaContext.jsx";
+import {useNavigate} from "react-router-dom";
+import axios from "axios";
+import { Toaster, toast } from 'sonner'
 
 const PageContainer = styled.div`
     background-color: ghostwhite;
@@ -90,18 +93,29 @@ const Login = () => {
 
 	const {nomeEntrar, setNomeEntrar, senhaEntrar, setSenhaEntrar} = useContext(ContaContext)
 
+	const navigate = useNavigate();
+
 	const onSubmitEntrar = (evento) => {
 		evento.preventDefault();
-		console.log({
-			nomeEntrar,
-			senhaEntrar
-		});
+		getUsuarioPorUsername();
 	};
+
+	const getUsuarioPorUsername = async () => {
+
+		try {
+			const urlString = `http://localhost:3000/api/usuarios/login/${nomeEntrar}`
+			const response = await axios.get(urlString);
+		} catch (error) {
+			console.error(error);
+		}
+
+	}
 
 	return (
 		<div>
 			<EstilosGlobais/>
 			<PageContainer>
+				<Toaster richColors position={"bottom-center"}/>
 				<LoginContainer>
 					<h1>📚 Emprestimo de Livros</h1>
 					<h3>Seja bem-vindo(a) a nossa comunidade literária!</h3>
@@ -119,7 +133,7 @@ const Login = () => {
 						/>
 						<section>
 							<BotaoEntrar type="submit" value="Entrar" onClick={onSubmitEntrar}/>
-							<p>Não possue uma conta? <a>Cadastre-se</a></p>
+							<p>Não possue uma conta? <a onClick={()=> {navigate('/signup')}}>Cadastre-se</a></p>
 						</section>
 					</form>
 				</LoginContainer>

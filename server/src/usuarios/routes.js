@@ -4,7 +4,7 @@ import {addUsuario, deleteUsuario, getTabelaUsuarios, getUsuarioPorUsername, upd
 const router = Router();
 
 router.get('/', getTabelaUsuarios);
-router.get('/:username', getUsuarioPorUsername);
+router.get('/login/:username', getUsuarioPorUsername);
 router.post('/', addUsuario);
 router.delete('/:username', deleteUsuario)
 router.put('/:username', updateUsuario)

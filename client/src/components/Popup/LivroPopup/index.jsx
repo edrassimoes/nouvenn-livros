@@ -1,5 +1,6 @@
 import Popup from "reactjs-popup";
 import styled from "styled-components";
+import {useState} from "react";
 
 const BotaoInfo = styled.button`
     cursor: pointer;
@@ -10,6 +11,7 @@ const BotaoInfo = styled.button`
         background-color: slategray;
         border: 2px solid black;
         border-radius: 3px;
+        scale: 1.1;
     }
 
 `
@@ -40,10 +42,17 @@ const StyledPopup = styled(Popup)`
             border: 2px solid black;
             border-radius: 3px;
             background: red;
+            &:hover {
+                scale: 1.3;
+            }
         }
 
         p {
             font-family: "Comic Sans MS", sans-serif;
+        }
+        
+        b {
+            font-size: 18px;
         }
 
     }
@@ -52,16 +61,18 @@ const StyledPopup = styled(Popup)`
 const LivroPopup = ({titulo, autor, paginas, editora, dono}) => {
 
     return (
-        <StyledPopup trigger={<BotaoInfo title="Informações">📖</BotaoInfo>} modal closeOnDocumentClick>
-            <div>
-                <button title="Fechar">✖</button>
-                <p><b>📖 Informações sobre este livro:</b></p>
-                <p><b>Título:</b> {titulo}</p>
-                <p><b>Autor:</b> {autor}</p>
-                <p><b>Número de páginas:</b> {paginas}</p>
-                <p><b>Editora:</b> {editora}</p>
-                <p><b>Dono:</b> {dono}</p>
-            </div>
+        <StyledPopup trigger={<BotaoInfo title="Informações">📖</BotaoInfo>} modal closeOnDocumentClick={false}>
+            {close => (
+                <div>
+                    <button title="Fechar" onClick={() => {close()}}>✖</button>
+                    <p><b>📖 Informações sobre este livro:</b></p>
+                    <p><b>Título:</b> {titulo}</p>
+                    <p><b>Autor:</b> {autor}</p>
+                    <p><b>Número de páginas:</b> {paginas}</p>
+                    <p><b>Editora:</b> {editora}</p>
+                    <p><b>Dono:</b> {dono}</p>
+                </div>
+            )}
         </StyledPopup>
     );
 };

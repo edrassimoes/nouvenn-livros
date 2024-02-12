@@ -24,7 +24,11 @@ export const getUsuarioPorUsername = async (req, res) => {
     try {
         pool.connect();
         const resultado = await pool.query(getUserByUsername, [username]);
-        res.status(200).json(resultado.rows);
+        if (resultado.rows.length === 0) {
+            res.status(404).send('Usuário não encontrado.');
+        } else {
+            res.status(200).json(resultado.rows);
+        }
     } catch (e) {
         console.log(e)
     } finally {
