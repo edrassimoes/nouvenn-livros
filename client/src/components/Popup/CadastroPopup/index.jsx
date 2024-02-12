@@ -19,7 +19,7 @@ const StyledPopup = styled(Popup)`
         box-shadow: rgba(0, 0, 0, 0.16) 0 0 3px;
         padding: 10px;
         width: fit-content;
-        height: 405px;
+        height: 410px;
 
         h3 {
             font-family: "Comic Sans MS", sans-serif;
@@ -31,7 +31,9 @@ const StyledPopup = styled(Popup)`
 `
 
 const BotaoCadastro = styled.button`
+    
     height: 35px;
+    border: 2px solid black;
     border-radius: 3px;
     cursor: pointer;
     font-family: "Comic Sans MS", sans-serif;
@@ -45,6 +47,7 @@ const BotaoCadastro = styled.button`
 `
 
 const BotaoFechar = styled.button`
+    font-family: "Comic Sans MS", sans-serif;
     cursor: pointer;
     position: absolute;
     display: block;
@@ -66,15 +69,21 @@ const SelecaoEstilizada = styled.fieldset`
     display: flex;
     gap: 8px;
     align-items: center;
+    background-color: wheat;
 
     legend {
         font-family: "Comic Sans MS", sans-serif;
+        background-color: white;
+        border: 2px solid black;
+        border-radius: 3px;
+        padding: 2px;
     }
 
 `
 
 const BotaoSubmit = styled.input`
-    border: 2px solid black;
+    
+    border: 1px solid black;
     border-radius: 3px;
     font-family: "Comic Sans MS", sans-serif;
     position: absolute;
@@ -121,7 +130,7 @@ const CadastroPopup = () => {
         <StyledPopup trigger={<BotaoCadastro>Cadastrar um livro +</BotaoCadastro>} modal closeOnDocumentClick={false}>
             {close => (
                 <div>
-                    <BotaoFechar title="Fechar" onClick={()=>{close()}}>✖</BotaoFechar>
+                    <BotaoFechar title="Fechar" onClick={()=>{close()}}>X</BotaoFechar>
                     <h3>📋 Cadrastrar um novo livro</h3>
                     <form onSubmit={onSubmit}>
                         <Input
@@ -150,25 +159,50 @@ const CadastroPopup = () => {
                             aoAlterar={valor => setEditora(valor)}
                         />
                         <SelecaoEstilizada>
-                            <legend>Escolha um icone:</legend>
+                            <legend>Escolha um icone 🎨</legend>
                             <Radio
-                                id="red_book"
-                                valor="📕"
+                                id="Vermelho"
+                                valor="🔴"
                                 aoAlterar={icone => setIcone(icone)}
                             />
                             <Radio
-                                id="green_book"
-                                valor="📗"
+                                id="Laranja"
+                                valor="🟠"
                                 aoAlterar={icone => setIcone(icone)}
                             />
                             <Radio
-                                id="blue_book"
-                                valor="📘"
+                                id="Amarelo"
+                                valor="🟡"
                                 aoAlterar={icone => setIcone(icone)}
                             />
                             <Radio
-                                id="orange_book"
-                                valor="📙"
+                                id="Verde"
+                                valor="🟢"
+                                aoAlterar={icone => setIcone(icone)}
+                            />
+                            <Radio
+                                id="Azul"
+                                valor="🔵"
+                                aoAlterar={icone => setIcone(icone)}
+                            />
+                            <Radio
+                                id="Roxo"
+                                valor="🟣"
+                                aoAlterar={icone => setIcone(icone)}
+                            />
+                            <Radio
+                                id="Marrom"
+                                valor="🟤"
+                                aoAlterar={icone => setIcone(icone)}
+                            />
+                            <Radio
+                                id="Preto"
+                                valor="⚫"
+                                aoAlterar={icone => setIcone(icone)}
+                            />
+                            <Radio
+                                id="Branco"
+                                valor="⚪"
                                 aoAlterar={icone => setIcone(icone)}
                             />
                         </SelecaoEstilizada>

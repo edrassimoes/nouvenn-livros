@@ -10,7 +10,7 @@ const ContainerImagem = styled.div`
 
     img {
         margin: 10px 0;
-        width: 150px;
+        width: 400px;
     }
 
     p {
@@ -25,7 +25,8 @@ const Quotes = styled.section`
     flex-direction: column;
     font-family: "Comic Sans MS", sans-serif;
     font-style: italic;
-    margin: 10px 0;
+    margin-bottom: 10px;
+    padding: 10px;
 
     h3 {
         font-size: 18px;
@@ -33,7 +34,7 @@ const Quotes = styled.section`
     }
     
     h4 {
-        text-align: end;
+        text-align: right;
         margin: 0;
     }
 
@@ -55,12 +56,11 @@ const Banner = () => {
 
     return (
         <ContainerImagem>
+            <img src="/assets/Logo2.png" alt=""/>
             <Quotes>
                 <h3>"{quote.content}"</h3>
                 <h4><b>- {quote.author}</b></h4>
             </Quotes>
-            <img src="/assets/bookshelf.png" alt=""/>
-            <p>Seja bem-vindo(a) a nossa estante coletiva 😄</p> :
         </ContainerImagem>
     );
 };

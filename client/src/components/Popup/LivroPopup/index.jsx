@@ -6,11 +6,11 @@ const BotaoInfo = styled.button`
     cursor: pointer;
     font-family: "Comic Sans MS", sans-serif;
     margin-right: 5px;
+    border: 1px solid black;
+    border-radius: 3px;
 
     &:hover {
         background-color: slategray;
-        border: 2px solid black;
-        border-radius: 3px;
         scale: 1.1;
     }
 
@@ -33,6 +33,7 @@ const StyledPopup = styled(Popup)`
         height: fit-content;
 
         button {
+            font-family: "Comic Sans MS", sans-serif;
             cursor: pointer;
             position: absolute;
             display: block;
@@ -64,7 +65,7 @@ const LivroPopup = ({titulo, autor, paginas, editora, dono}) => {
         <StyledPopup trigger={<BotaoInfo title="Informações">📖</BotaoInfo>} modal closeOnDocumentClick={false}>
             {close => (
                 <div>
-                    <button title="Fechar" onClick={() => {close()}}>✖</button>
+                    <button title="Fechar" onClick={() => {close()}}>X</button>
                     <p><b>📖 Informações sobre este livro:</b></p>
                     <p><b>Título:</b> {titulo}</p>
                     <p><b>Autor:</b> {autor}</p>

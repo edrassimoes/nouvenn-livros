@@ -9,17 +9,17 @@ import EstanteSolicitacoes from "../../components/Estantes/EstanteSolicitacoes/i
 import {Toaster} from "sonner";
 
 const ContainerEstilizado = styled.div`
+    width: 100%;
     background-color: ghostwhite;
-    width: 100vw;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     position: absolute;
     align-items: center;
+    margin-top: 5px;
 `;
 
 const BoxEstilizado = styled.div`
-    width: 95%;
+    width: 96%;
     background-color: lightsteelblue;
     border: black 2px solid;
     border-radius: 5px;
@@ -28,6 +28,7 @@ const BoxEstilizado = styled.div`
     flex-direction: column;
     gap: 10px;
     margin: 8px 10px;
+    box-sizing: border-box;
 `;
 
 const Home = () => {

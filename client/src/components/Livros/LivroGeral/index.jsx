@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import LivroPopup from "../../Popup/LivroPopup/index.jsx";
+import axios from "axios";
+import {useContext} from "react";
+import {ContaContext} from "../../../context/ContaContext.jsx";
 
 const LivroEstilizado = styled.div`
     background-color: whitesmoke;
@@ -27,14 +30,33 @@ const LivroEstilizado = styled.div`
 const BotaoSolicitar = styled.button`
     cursor: pointer;
     font-family: "Comic Sans MS", sans-serif;
+    border: 1px solid black;
+    border-radius: 3px;
     &:hover {
         background-color: yellow;
-        border-radius: 3px;
         scale: 1.1;
     }
 `
 
-const LivroGeral = ({titulo, autor, idioma, paginas, editora, icone, dono }) => {
+const LivroGeral = ({ id, titulo, autor, idioma, paginas, editora, icone, dono }) => {
+
+    const {nomeEntrar} = useContext(ContaContext)
+
+    const addEmprestimo = () => {
+        axios.post('http://localhost:3000/api/emprestimos', {
+            o_username: dono,
+            b_username: dono,
+            book_id: id,
+        })
+            .then(response => console.log(response))
+            .catch(error => console.log(error))
+    }
+
+    const handleClick = () => {
+        addEmprestimo();
+        window.location.reload();
+    }
+
     return (
         <>
             <LivroEstilizado>
@@ -48,7 +70,7 @@ const LivroGeral = ({titulo, autor, idioma, paginas, editora, icone, dono }) => 
                         editora={editora}
                         dono={dono}
                     />
-                    <BotaoSolicitar>Solicitar</BotaoSolicitar>
+                    <BotaoSolicitar onClick={handleClick}>Solicitar</BotaoSolicitar>
                 </div>
             </LivroEstilizado>
         </>

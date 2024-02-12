@@ -9,6 +9,11 @@ const HeaderEstilizado = styled.header`
     display: flex;
     justify-content: space-between;
     padding: 10px;
+
+    @media (max-width: 600px) {
+        padding: 3px;
+    }
+    
 `
 
 const BotaoSair = styled.button`
@@ -16,17 +21,23 @@ const BotaoSair = styled.button`
     cursor: pointer;
     font-family: "Comic Sans MS", sans-serif;
     font-weight: bold;
+    border: 1px solid black;
+    border-radius: 3px;
     
     &:hover {
         background-color: red;
         color: white;
-        border-radius: 3px;
         scale: 1.1;
     }
     
     @media (max-width: 600px) {
         display: block;
+        border: 1px solid black;
         width: 100%;
+        margin-top: 2px;
+        &:hover {
+            scale: 1;
+        }
     }
     
 `

@@ -27,9 +27,10 @@ const LivroEstilizado = styled.div`
 const BotaoDevolver = styled.button`
     cursor: pointer;
     font-family: "Comic Sans MS", sans-serif;
+    border: 1px solid black;
+    border-radius: 3px;
     &:hover {
         background-color: deepskyblue;
-        border-radius: 3px;
         scale: 1.1;
     }
 `

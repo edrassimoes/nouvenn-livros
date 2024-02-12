@@ -27,23 +27,24 @@ const LivroEstilizado = styled.div`
 const BotaoAceitar = styled.button`
     
     cursor: pointer;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: lightgreen;
     
     &:hover {
-        background-color: white;
-        border: 2px solid darkgreen;
-        border-radius: 3px;
         scale: 1.1;
     }
 `
 
 const BotaoNegar = styled.button`
     
+    font-family: "Comic Sans MS", sans-serif;
     cursor: pointer;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: red;
     
     &:hover {
-        background-color: white;
-        border: 2px solid darkred;
-        border-radius: 3px;
         scale: 1.1;
     }
 `
@@ -62,8 +63,10 @@ const LivroSolicitado = ({ titulo, autor, idioma, paginas, editora, icone, dono 
                         editora={editora}
                         dono={dono}
                     />
-                    <BotaoAceitar title="Aprovar">✅</BotaoAceitar>
-                    <BotaoNegar title="Negar">❌</BotaoNegar>
+                    <section>
+                        <BotaoAceitar title="Aprovar">✔</BotaoAceitar>
+                        <BotaoNegar title="Negar">X</BotaoNegar>
+                    </section>
                 </div>
             </LivroEstilizado>
         </>

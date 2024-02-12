@@ -15,7 +15,7 @@ const EstanteEstilizada = styled.div`
 const TituloEstilizado = styled.p`
     font-family: "Comic Sans MS", sans-serif;
     padding: 0;
-    margin: 0 0 0 7px;
+    margin: 0 0 3px 7px;
 `
 
 const EstanteConta = () => {
@@ -37,11 +37,12 @@ const EstanteConta = () => {
 
     return (
         <EstanteEstilizada>
-            <TituloEstilizado>Meus livros</TituloEstilizado>
+            <TituloEstilizado>📕 Meus livros</TituloEstilizado>
             <CadastroPopup/>
             {livros.map(livro =>
                 <LivroProprio
                     key={livro.id}
+                    id={livro.id}
                     titulo={livro.titulo}
                     autor={livro.autor}
                     idioma={livro.idioma}

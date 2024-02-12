@@ -21,14 +21,13 @@ const StyledPopup = styled(Popup)`
         button {
             background-color: red;
             font-family: "Comic Sans MS", sans-serif;
-            
             cursor: pointer;
             position: absolute;
             display: block;
             line-height: 20px;
-            right: 5px;
-            bottom: 5px;
-            border: 2px solid black;
+            right: 6px;
+            bottom: 6px;
+            border: 1px solid black;
             border-radius: 3px;
             &:hover {
                 scale: 1.1;
@@ -48,24 +47,26 @@ const BotaoUsuario = styled.button`
     cursor: pointer;
     font-family: "Comic Sans MS", sans-serif;
     margin-right: 10px;
+    border: 1px solid black;
+    border-radius: 3px;
 
     &:hover {
         background-color: orange;
-        border: 2px solid black;
-        border-radius: 3px;
         scale: 1.1;
     }
     
     &:focus {
         background-color: orange;
-        border: 2px solid black;
-        border-radius: 3px;
         scale: 1.1;
     }
 
     @media (max-width: 600px) {
         display: block;
+        border: 1px solid black;
         width: 100%;
+        &:hover {
+            scale: 1;
+        }
     }
     
 `
