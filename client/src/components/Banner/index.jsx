@@ -45,14 +45,13 @@ const Banner = () => {
     const [quote, setQuote] = useState('')
 
     useEffect(() => {
+        // https://github.com/lukePeavey/quotable
+        const getQuote = async () => {
+            const response = await axios.get('https://api.quotable.io/quotes/random?limit=1')
+            setQuote(response.data[0])
+        };
         getQuote();
     }, []);
-
-    // https://github.com/lukePeavey/quotable
-    const getQuote = async () => {
-        const response = await axios.get('https://api.quotable.io/quotes/random?limit=1')
-        setQuote(response.data[0])
-    }
 
     return (
         <ContainerImagem>

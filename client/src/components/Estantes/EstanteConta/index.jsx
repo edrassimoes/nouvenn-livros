@@ -22,18 +22,18 @@ const EstanteConta = () => {
 
     const [livros, setLivros] = useState([])
 
-    useEffect(() => {
-        getLivrosPorUsuario();
-    }, []);
-
     const getLivrosPorUsuario = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/api/livros/conta/edras`);
+            const response = await axios.get(`http://localhost:1234/api/livros/conta/edras`);
             setLivros(response.data)
         } catch (error) {
-            console.error(error)
+            console.log(error.response)
         }
-    }
+    };
+
+    useEffect(() => {
+        getLivrosPorUsuario();
+    });
 
     return (
         <EstanteEstilizada>

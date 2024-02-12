@@ -97,7 +97,7 @@ const Signup = () => {
     const navigate = useNavigate();
 
     const addUsuario = () => {
-        axios.post('http://localhost:3000/api/usuarios', {
+        axios.post('http://localhost:1234/api/usuarios', {
             username: nomeCriar ? nomeCriar : null,
             email: emailCriar ? emailCriar : null,
             password: senhaCriar ? senhaCriar : null,

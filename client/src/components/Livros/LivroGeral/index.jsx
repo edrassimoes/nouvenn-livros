@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import LivroPopup from "../../Popup/LivroPopup/index.jsx";
 import axios from "axios";
-import {useContext} from "react";
-import {ContaContext} from "../../../context/ContaContext.jsx";
 
 const LivroEstilizado = styled.div`
     background-color: whitesmoke;
@@ -44,8 +42,6 @@ const BotaoSolicitar = styled.button`
 `
 
 const LivroGeral = ({ id, titulo, autor, idioma, paginas, editora, icone, dono }) => {
-
-    const {nomeEntrar} = useContext(ContaContext)
 
     const addEmprestimo = () => {
         axios.post('http://localhost:3000/api/emprestimos', {

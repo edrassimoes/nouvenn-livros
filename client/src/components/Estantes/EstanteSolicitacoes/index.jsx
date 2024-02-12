@@ -28,17 +28,13 @@ const EstanteSolicitacoes = () => {
     const [livros, setLivros] = useState([])
 
     useEffect(() => {
-        getEmprestimoPeloDono();
-    }, []);
-
-    const getEmprestimoPeloDono = async () => {
-        try {
-            const response = await axios.get(`http://localhost:3000/api/emprestimos/owner/edras`);
+        const getEmprestimoPeloDono = async () => {
+            const response = await axios.get(`http://localhost:1234/api/emprestimos/owner/edras`);
             setLivros(response.data)
-        } catch (error) {
-            console.error(error)
-        }
-    }
+        };
+        getEmprestimoPeloDono();
+    });
+
 
     return (
         <EstanteEstilizada>

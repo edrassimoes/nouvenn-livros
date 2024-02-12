@@ -1,5 +1,11 @@
 import pool from "../../db.js";
-import {createRelation, getBorrowerBooks, getBorrowTable, getOwnerBooks} from "./queries.js";
+import {
+    createRelation, deleteRelation,
+    getBorrowerBooks,
+    getBorrowTable,
+    getOwnerBooks,
+    updateRelation
+} from "./queries.js";
 
 export const getTabelaEmprestimos = async (req, res) => {
     try {
@@ -43,7 +49,7 @@ export const addEmprestimo = async (req, res) => {
     const {o_username, b_username, book_id} = req.body;
     try {
         pool.connect();
-        await pool.query(createRelation, [o_username, b_username, book_id]);
+        await pool.query(createRelation, [o_username, b_username, book_id, false]);
         res.status(201).send('Emprestimo realizado com sucesso!');
     } catch (e) {
         console.log(e)
@@ -52,13 +58,25 @@ export const addEmprestimo = async (req, res) => {
     }
 }
 
+export const updateEmprestimo = async (req, res) => {
+    const {status, id} = req.body;
+    try {
+        pool.connect();
+        await pool.query(updateRelation, [status, id]);
+        res.status(201).send('Status do emprestimo atualizado com sucesso.');
+    } catch (e) {
+        console.log(e)
+    } finally {
+        // fechar conexão
+    }
+}
+
 export const deleteEmprestimo = async (req, res) => {
-    const b_username = (req.params.b_username);
     const book_id = (req.params.book_id)
     try {
         pool.connect();
-        await pool.query(deleteRelation, [b_username, book_id]);
-        res.status(200).send('Livro devolvido com sucesso.');
+        await pool.query(deleteRelation, [book_id]);
+        res.status(200).send('Solicitação de empréstimo negada.');
     } catch (e) {
         console.log(e)
     } finally {

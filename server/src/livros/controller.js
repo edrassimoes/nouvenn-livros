@@ -43,12 +43,12 @@ export const addLivro = async (req, res) => {
     const {titulo, autor, idioma, paginas, editora, dono, icone} = req.body;
     try {
         pool.connect();
-        await pool.query(createBook, [titulo, autor, idioma, paginas, editora, dono, icone]);
+        pool.query(createBook, [titulo, autor, idioma, paginas, editora, dono, icone]);
         res.status(201).send('Livro cadastrado com sucesso!');
     } catch (e) {
         console.log(e)
     } finally {
-        // fechar conexão
+        pool.release();
     }
 }
 

@@ -28,17 +28,12 @@ const EstanteEmprestimos = () => {
     const [livros, setLivros] = useState([])
 
     useEffect(() => {
-        getEmprestimoPelaSolicitacao();
-    }, []);
-
-    const getEmprestimoPelaSolicitacao = async () => {
-        try {
-            const response = await axios.get(`http://localhost:3000/api/emprestimos/borrower/edras`);
+        const getEmprestimoPelaSolicitacao = async () => {
+            const response = await axios.get(`http://localhost:1234/api/emprestimos/borrower/edras`);
             setLivros(response.data)
-        } catch (error) {
-            console.error(error)
-        }
-    }
+        };
+        getEmprestimoPelaSolicitacao();
+    });
 
     return (
         <EstanteEstilizada>

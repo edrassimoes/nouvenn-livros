@@ -103,7 +103,7 @@ const Login = () => {
 	const getUsuarioPorUsername = async () => {
 
 		try {
-			const urlString = `http://localhost:3000/api/usuarios/login/${nomeEntrar}`
+			const urlString = `http://localhost:1234/api/usuarios/login/${nomeEntrar}`
 			const response = await axios.get(urlString);
 		} catch (error) {
 			console.error(error);

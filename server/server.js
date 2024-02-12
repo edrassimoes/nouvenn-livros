@@ -5,12 +5,12 @@ import usuariosRoutes from "./src/usuarios/routes.js"
 import emprestimosRoutes from "./src/emprestimos/routes.js"
 
 const app = express();
-const port = 3000;
+const port = 1234;
 
+app.use(express.json());
 app.use(cors());
-app.use(express.json())
 app.use('/api/livros', livrosRoutes);
-app.use('/api/usuarios', usuariosRoutes)
-app.use('/api/emprestimos', emprestimosRoutes)
+app.use('/api/usuarios', usuariosRoutes);
+app.use('/api/emprestimos', emprestimosRoutes);
 
 app.listen(port, () => console.log(`Server listening on port ${port}.`));

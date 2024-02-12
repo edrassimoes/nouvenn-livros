@@ -25,20 +25,18 @@ const ScrollableDiv = styled.div`
 
 const EstanteGeral = () => {
 
+
+
     const [livros, setLivros] = useState([])
 
     useEffect(() => {
         getTabelaLivros();
-    }, []);
+    }, [livros]);
 
     const getTabelaLivros = async () => {
-        try {
-            const response = await axios.get('http://localhost:3000/api/livros');
-            setLivros(response.data)
-        } catch (error) {
-            console.error(error)
-        }
-    }
+        const response = await axios.get('http://localhost:1234/api/livros');
+        setLivros(response.data)
+    };
 
     return (
         <EstanteEstilizada>

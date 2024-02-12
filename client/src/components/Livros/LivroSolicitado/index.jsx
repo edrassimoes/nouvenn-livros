@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import LivroPopup from "../../Popup/LivroPopup/index.jsx";
+import axios from "axios";
 
 const LivroEstilizado = styled.div`
     background-color: whitesmoke;
@@ -59,7 +60,34 @@ const BotaoNegar = styled.button`
     }
 `
 
-const LivroSolicitado = ({ titulo, autor, idioma, paginas, editora, icone, dono }) => {
+const LivroSolicitado = ({ id, titulo, autor, idioma, paginas, editora, icone, dono }) => {
+
+    const aprovarSolicitacao = ()=> {
+        axios.post('http://localhost:3000/api/emprestimos/aprovar', {
+            status: true,
+            id: id,
+        })
+            .then(response => console.log(response))
+            .catch(error => console.log(error))
+    }
+
+    const negarSolicitacao = ()=> {
+        const url = `http://localhost:3000/api/emprestimos/remover/${id}`
+        axios.delete(url)
+            .then(response => console.log(response))
+            .catch(error => console.log(error))
+    }
+
+    const aprovarClick = () => {
+        aprovarSolicitacao();
+        window.location.reload();
+    }
+
+    const negarClick = () => {
+        negarSolicitacao();
+        window.location.reload();
+    }
+
     return (
         <>
             <LivroEstilizado>
@@ -74,8 +102,8 @@ const LivroSolicitado = ({ titulo, autor, idioma, paginas, editora, icone, dono 
                         dono={dono}
                     />
                     <section>
-                        <BotaoAceitar title="Aprovar">✔</BotaoAceitar>
-                        <BotaoNegar title="Negar">X</BotaoNegar>
+                        <BotaoAceitar title="Aprovar" onClick={aprovarClick}>✔</BotaoAceitar>
+                        <BotaoNegar title="Negar" onClick={negarClick}>X</BotaoNegar>
                     </section>
                 </div>
             </LivroEstilizado>

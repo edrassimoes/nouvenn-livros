@@ -32,7 +32,7 @@ const StyledPopup = styled(Popup)`
 `
 
 const BotaoCadastro = styled.button`
-    
+
     height: 35px;
     border: 2px solid black;
     border-radius: 3px;
@@ -59,6 +59,7 @@ const BotaoFechar = styled.button`
     background: red;
     width: 7%;
     height: 7%;
+
     &:hover {
         scale: 1.3;
     }
@@ -84,7 +85,7 @@ const SelecaoEstilizada = styled.fieldset`
 `
 
 const BotaoSubmit = styled.input`
-    
+
     border: 1px solid black;
     border-radius: 3px;
     font-family: "Comic Sans MS", sans-serif;
@@ -108,33 +109,39 @@ const CadastroPopup = () => {
     const [editora, setEditora] = useState('')
     const [icone, setIcone] = useState('')
 
-    const adicionarLivro = () => {
-        axios.post('http://localhost:3000/api/livros', {
+    const adicionarLivro = async (data) => {
+        try {
+            const response = await axios.post('http://localhost:1234/api/livros', {data});
+            console.log(data)
+            console.log(response.data);
+        } catch (error) {
+            console.log(error.response)
+        }
+    }
+
+    const handleSubmit = (evento) => {
+        evento.preventDefault();
+        let data = {
             titulo: titulo,
             autor: autor,
             idioma: idioma,
             paginas: paginas,
             editora: editora,
-            dono: 'edras',
+            dono: "edras",
             icone: icone
-        })
-            .then(response => console.log(response))
-            .catch(error => console.log(error))
-    }
-
-    const onSubmit = (evento) => {
-        evento.preventDefault();
-        adicionarLivro();
-        window.location.reload()
+        }
+        adicionarLivro(data);
     }
 
     return (
         <StyledPopup trigger={<BotaoCadastro>📋 Cadastrar um novo livro</BotaoCadastro>} modal closeOnDocumentClick={false}>
             {close => (
                 <div>
-                    <BotaoFechar title="Fechar" onClick={()=>{close()}}>X</BotaoFechar>
+                    <BotaoFechar title="Fechar" onClick={() => {
+                        close()
+                    }}>X</BotaoFechar>
                     <h3>📋 Cadrastrar um novo livro</h3>
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={handleSubmit}>
                         <Input
                             label="Titulo:"
                             valor={titulo}

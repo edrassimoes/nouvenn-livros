@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import LivroPopup from "../../Popup/LivroPopup/index.jsx";
+import axios from "axios";
 
 const LivroEstilizado = styled.div`
     background-color: whitesmoke;
@@ -42,7 +43,20 @@ const BotaoRemover = styled.button`
     }
 `
 
-const LivroProprio = ({ titulo, autor, idioma, paginas, editora, icone, dono }) => {
+const LivroProprio = ({ id, titulo, autor, idioma, paginas, editora, icone, dono }) => {
+
+    const deleteLivro = () => {
+        const url = `http://localhost:3000/api/livros/${id}`
+        axios.delete(url)
+            .then(response => console.log(response))
+            .catch(error => console.log(error))
+    }
+
+    const handleClick = () => {
+        deleteLivro();
+        window.location.reload();
+    }
+
     return (
         <>
             <LivroEstilizado>
@@ -56,7 +70,7 @@ const LivroProprio = ({ titulo, autor, idioma, paginas, editora, icone, dono }) 
                         editora={editora}
                         dono={dono}
                     />
-                    <BotaoRemover>Remover</BotaoRemover>
+                    <BotaoRemover onClick={handleClick}>Remover</BotaoRemover>
                 </div>
             </LivroEstilizado>
         </>

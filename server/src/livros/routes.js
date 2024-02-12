@@ -4,7 +4,7 @@ import {getLivroPorId, getTabelaLivros, addLivro, deleteLivro, updateLivro, getL
 const router = Router();
 
 router.get('/', getTabelaLivros);
-router.get('/:id', getLivroPorId);
+router.get('/livro/:id', getLivroPorId);
 router.get('/conta/:username', getLivroPorUsuario);
 router.post('/', addLivro);
 router.delete('/:id', deleteLivro)
