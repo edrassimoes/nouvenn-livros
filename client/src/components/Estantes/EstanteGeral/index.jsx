@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import LivroGeral from "../../Livros/LivroGeral/index.jsx";
 import axios from "axios";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {ContaContext} from "../../../context/ContaContext.jsx";
 
 const EstanteEstilizada = styled.div`
     background-color: white;
@@ -9,6 +10,8 @@ const EstanteEstilizada = styled.div`
     border-radius: 5px;
     height: 100%;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
 `
 
 const TituloEstilizado = styled.p`
@@ -17,32 +20,30 @@ const TituloEstilizado = styled.p`
     margin: 0 0 3px 7px;
 `
 
+const MenssagemEstilizada = styled.p`
+    font-family: "Comic Sans MS", sans-serif;
+    color: gray;
+    align-self: center;
+    margin: 0 0 6px 0;
+`
+
 const ScrollableDiv = styled.div`
     min-height: fit-content;
     max-height: 475px;
     overflow: auto;
 `
 
-const EstanteGeral = () => {
+const EstanteGeral = (props) => {
 
-
-
-    const [livros, setLivros] = useState([])
-
-    useEffect(() => {
-        getTabelaLivros();
-    }, [livros]);
-
-    const getTabelaLivros = async () => {
-        const response = await axios.get('http://localhost:1234/api/livros');
-        setLivros(response.data)
-    };
+    const {sessaoAtual} = useContext(ContaContext);
 
     return (
         <EstanteEstilizada>
             <TituloEstilizado>📙 Livros disponíveis:</TituloEstilizado>
+            <MenssagemEstilizada>Aqui aparecerão somente os livros de outros usuários.</MenssagemEstilizada>
             <ScrollableDiv>
-                {livros.map(livro =>
+                {props.livros && props.livros.filter(livro => livro.dono =! sessaoAtual.username)
+                    .map(livro =>
                     <LivroGeral
                         key={livro.id}
                         id={livro.id}

@@ -4,14 +4,17 @@ export const ContaContext = createContext();
 
 const ContaProvider = ({children}) => {
 
-	// LogIn, Home
-	const [nomeEntrar, setNomeEntrar] = useState("");
-	const [senhaEntrar, setSenhaEntrar] = useState("");
+	const [usuarios, setUsuarios] = useState([])
+	const [sessaoAtual, setSessaoAtual] = useState({
+		username: "",
+		email: "",
+		password: ""
+	})
 
 	return (
 		<ContaContext.Provider value={{
-			nomeEntrar, setNomeEntrar,
-			senhaEntrar, setSenhaEntrar,
+			usuarios, setUsuarios,
+			sessaoAtual, setSessaoAtual
 		}}>
 			{children}
 		</ContaContext.Provider>

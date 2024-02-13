@@ -1,12 +1,12 @@
 import EstilosGlobais from "../../components/EstilosGlobais/index.jsx";
 import styled from "styled-components";
 import Input from "../../components/Input/index.jsx";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import BotaoSenha from "../../components/BotaoSenha/index.jsx";
 import {ContaContext} from "../../context/ContaContext.jsx";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import { Toaster, toast } from 'sonner'
+import {Toaster, toast} from "sonner";
 
 const PageContainer = styled.div`
     background-color: ghostwhite;
@@ -91,55 +91,87 @@ const BotaoEntrar = styled.input`
 
 const Login = () => {
 
-	const {nomeEntrar, setNomeEntrar, senhaEntrar, setSenhaEntrar} = useContext(ContaContext)
+    const {usuarios, setUsuarios, setSessaoAtual} = useContext(ContaContext);
 
-	const navigate = useNavigate();
+    const [usuario, setUsuario] = useState({
+        username: "",
+        email: "",
+        password: ""
+    })
 
-	const onSubmitEntrar = (evento) => {
-		evento.preventDefault();
-		getUsuarioPorUsername();
-	};
+    const navigate = useNavigate();
 
-	const getUsuarioPorUsername = async () => {
+    const getUsuarios = async () => {
+        try {
+            const response = await axios.get('http://localhost:1234/api/v1/usuarios/');
+            setUsuarios(response.data)
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
-		try {
-			const urlString = `http://localhost:1234/api/usuarios/login/${nomeEntrar}`
-			const response = await axios.get(urlString);
-		} catch (error) {
-			console.error(error);
-		}
+    const validaUsuario = () => {
+        const validacao = usuarios.find(conta => (conta.username === usuario.username && conta.password === usuario.password));
+        if (validacao) {
+            setSessaoAtual(validacao);
+            navigate('/home');
+        } else {
+            toast.error('Usuário ou senha incorretos.');
+            setUsuario({
+                username: "",
+                email: "",
+                password: ""
+            });
+        }
+    }
 
-	}
+    const handleChange = (field, value) => {
+        setUsuario(prevUser => ({
+            ...prevUser,
+            [field]: value
+        }));
+    }
 
-	return (
-		<div>
-			<EstilosGlobais/>
-			<PageContainer>
-				<Toaster richColors position={"bottom-center"}/>
-				<LoginContainer>
-					<h1>📚 Emprestimo de Livros</h1>
-					<h3>Seja bem-vindo(a) a nossa comunidade literária!</h3>
-					<h3 id="teste">Faça seu login para continuar.</h3>
-					<h2>👤</h2>
-					<form>
-						<Input
-							label="Nome de usuário:"
-							valor={nomeEntrar}
-							aoAlterar={nome => setNomeEntrar(nome)}
-						/>
-						<BotaoSenha
-							valor={senhaEntrar}
-							aoAlterar={senha => setSenhaEntrar(senha)}
-						/>
-						<section>
-							<BotaoEntrar type="submit" value="Entrar" onClick={onSubmitEntrar}/>
-							<p>Não possue uma conta? <a onClick={()=> {navigate('/signup')}}>Cadastre-se</a></p>
-						</section>
-					</form>
-				</LoginContainer>
-			</PageContainer>
-		</div>
-	);
+    const handleSubmit = (evento) => {
+        evento.preventDefault();
+        validaUsuario();
+    };
+
+    useEffect(() => {
+        getUsuarios();
+    }, []);
+
+    return (
+        <div>
+            <EstilosGlobais/>
+            <Toaster richColors position="top-center"/>
+            <PageContainer>
+                <LoginContainer>
+                    <h1>📚 Emprestimo de Livros</h1>
+                    <h3>Seja bem-vindo(a) a nossa comunidade literária!</h3>
+                    <h3 id="teste">Faça seu login para continuar.</h3>
+                    <h2>👤</h2>
+                    <form>
+                        <Input
+                            label="Nome de usuário:"
+                            valor={usuario.username}
+                            aoAlterar={(username) => handleChange('username', username)}
+                        />
+                        <BotaoSenha
+                            valor={usuario.password}
+                            aoAlterar={(password) => handleChange('password', password)}
+                        />
+                        <section>
+                            <BotaoEntrar type="submit" value="Entrar" onClick={handleSubmit}/>
+                            <p>Não possue uma conta? <a onClick={() => {
+                                navigate('/signup')
+                            }}>Cadastre-se</a></p>
+                        </section>
+                    </form>
+                </LoginContainer>
+            </PageContainer>
+        </div>
+    );
 };
 
 export default Login;

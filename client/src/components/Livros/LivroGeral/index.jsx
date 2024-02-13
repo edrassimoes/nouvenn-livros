@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import LivroPopup from "../../Popup/LivroPopup/index.jsx";
 import axios from "axios";
+import {useContext} from "react";
+import {ContaContext} from "../../../context/ContaContext.jsx";
 
 const LivroEstilizado = styled.div`
     background-color: whitesmoke;
@@ -23,11 +25,11 @@ const LivroEstilizado = styled.div`
             flex-direction: column;
         }
     }
-    
+
     p {
         font-family: "Comic Sans MS", sans-serif;
     }
-    
+
 `
 
 const BotaoSolicitar = styled.button`
@@ -35,18 +37,21 @@ const BotaoSolicitar = styled.button`
     font-family: "Comic Sans MS", sans-serif;
     border: 1px solid black;
     border-radius: 3px;
+
     &:hover {
         background-color: yellow;
         scale: 1.1;
     }
 `
 
-const LivroGeral = ({ id, titulo, autor, idioma, paginas, editora, icone, dono }) => {
+const LivroGeral = ({id, titulo, autor, idioma, paginas, editora, icone, dono}) => {
+
+    const {sessaoAtual} = useContext(ContaContext);
 
     const addEmprestimo = () => {
-        axios.post('http://localhost:3000/api/emprestimos', {
+        axios.post('http://localhost:1234/api/v1/emprestimos', {
             o_username: dono,
-            b_username: dono,
+            b_username: sessaoAtual.username,
             book_id: id,
         })
             .then(response => console.log(response))

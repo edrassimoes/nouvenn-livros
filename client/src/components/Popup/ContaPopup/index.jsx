@@ -88,15 +88,15 @@ const BotaoUsuario = styled.button`
 
 const ContaPopup = () => {
 
-    const {} = useContext(ContaContext)
+    const {sessaoAtual} = useContext(ContaContext)
 
     return (
         <StyledPopup trigger={<BotaoUsuario>Minhas informações 👤</BotaoUsuario>} closeOnDocumentClick={false}>
             {close => (
                 <div>
-                    <p><b>Nome de usuário: </b>edrassimoes</p>
-                    <p><b>E-mail: </b>edrassimoes@gmail.com</p>
-                    <p><b>Senha: </b>123</p>
+                    <p><b>Nome de usuário: </b>{sessaoAtual.username}</p>
+                    <p><b>E-mail: </b>{sessaoAtual.email}</p>
+                    <p><b>Senha: </b>{sessaoAtual.password}</p>
                     <button title="Fechar" onClick={() => {close()}}>X</button>
                 </div>
             )}

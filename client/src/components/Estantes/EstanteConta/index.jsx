@@ -3,6 +3,7 @@ import CadastroPopup from "../../Popup/CadastroPopup/index.jsx";
 import LivroProprio from "../../Livros/LivroProprio/index.jsx";
 import {useContext, useEffect, useState} from "react";
 import axios from "axios";
+import {ContaContext} from "../../../context/ContaContext.jsx";
 
 const EstanteEstilizada = styled.div`
     background-color: white;
@@ -18,40 +19,28 @@ const TituloEstilizado = styled.p`
     margin: 0 0 3px 7px;
 `
 
-const EstanteConta = () => {
+const EstanteConta = (props) => {
 
-    const [livros, setLivros] = useState([])
-
-    const getLivrosPorUsuario = async () => {
-        try {
-            const response = await axios.get(`http://localhost:1234/api/livros/conta/edras`);
-            setLivros(response.data)
-        } catch (error) {
-            console.log(error.response)
-        }
-    };
-
-    useEffect(() => {
-        getLivrosPorUsuario();
-    });
+    const {sessaoAtual} = useContext(ContaContext);
 
     return (
         <EstanteEstilizada>
             <TituloEstilizado>📕 Meus livros</TituloEstilizado>
             <CadastroPopup/>
-            {livros.map(livro =>
-                <LivroProprio
-                    key={livro.id}
-                    id={livro.id}
-                    titulo={livro.titulo}
-                    autor={livro.autor}
-                    idioma={livro.idioma}
-                    paginas={livro.paginas}
-                    editora={livro.editora}
-                    icone={livro.icone}
-                    dono={livro.dono}
-                />
-            )}
+            {props.livros && props.livros.filter(livro => livro.dono === sessaoAtual.username)
+                .map(livro =>
+                    <LivroProprio
+                        key={livro.id}
+                        id={livro.id}
+                        titulo={livro.titulo}
+                        autor={livro.autor}
+                        idioma={livro.idioma}
+                        paginas={livro.paginas}
+                        editora={livro.editora}
+                        icone={livro.icone}
+                        dono={livro.dono}
+                    />
+                )}
         </EstanteEstilizada>
     );
 };

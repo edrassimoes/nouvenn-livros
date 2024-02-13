@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import LivroPopup from "../../Popup/LivroPopup/index.jsx";
 import axios from "axios";
+import {useContext} from "react";
+import {ContaContext} from "../../../context/ContaContext.jsx";
 
 const LivroEstilizado = styled.div`
     background-color: whitesmoke;
@@ -45,16 +47,15 @@ const BotaoRemover = styled.button`
 
 const LivroProprio = ({ id, titulo, autor, idioma, paginas, editora, icone, dono }) => {
 
-    const deleteLivro = () => {
-        const url = `http://localhost:3000/api/livros/${id}`
-        axios.delete(url)
+    const deletarLivro = () => {
+        axios.delete(`http://localhost:1234/api/v1/livros/${id}`)
             .then(response => console.log(response))
             .catch(error => console.log(error))
     }
 
     const handleClick = () => {
-        deleteLivro();
-        window.location.reload();
+        deletarLivro();
+        window.location.reload()
     }
 
     return (

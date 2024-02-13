@@ -12,7 +12,7 @@ const LivroEstilizado = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    
+
     div {
         display: flex;
         gap: 5px;
@@ -27,7 +27,7 @@ const LivroEstilizado = styled.div`
     p {
         font-family: "Comic Sans MS", sans-serif;
     }
-    
+
     section {
         display: flex;
         gap: 5px;
@@ -36,34 +36,34 @@ const LivroEstilizado = styled.div`
 `
 
 const BotaoAceitar = styled.button`
-    
+
     cursor: pointer;
     border: 1px solid black;
     border-radius: 3px;
     background-color: lightgreen;
-    
+
     &:hover {
         scale: 1.1;
     }
 `
 
 const BotaoNegar = styled.button`
-    
+
     font-family: "Comic Sans MS", sans-serif;
     cursor: pointer;
     border: 1px solid black;
     border-radius: 3px;
     background-color: red;
-    
+
     &:hover {
         scale: 1.1;
     }
 `
 
-const LivroSolicitado = ({ id, titulo, autor, idioma, paginas, editora, icone, dono }) => {
+const LivroSolicitado = ({id, titulo, autor, idioma, paginas, editora, icone, dono}) => {
 
-    const aprovarSolicitacao = ()=> {
-        axios.post('http://localhost:3000/api/emprestimos/aprovar', {
+    const aprovarSolicitacao = () => {
+        axios.put('http://localhost:1234/api/v1/emprestimos', {
             status: true,
             id: id,
         })
@@ -71,9 +71,8 @@ const LivroSolicitado = ({ id, titulo, autor, idioma, paginas, editora, icone, d
             .catch(error => console.log(error))
     }
 
-    const negarSolicitacao = ()=> {
-        const url = `http://localhost:3000/api/emprestimos/remover/${id}`
-        axios.delete(url)
+    const negarSolicitacao = () => {
+        axios.delete(`http://localhost:1234/api/v1/emprestimos/${id}`)
             .then(response => console.log(response))
             .catch(error => console.log(error))
     }

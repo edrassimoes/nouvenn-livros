@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import LivroPopup from "../../Popup/LivroPopup/index.jsx";
+import axios from "axios";
 
 const LivroEstilizado = styled.div`
     background-color: whitesmoke;
@@ -22,7 +23,7 @@ const LivroEstilizado = styled.div`
             justify-content: center;
             flex-direction: column;
         }
-        
+
     }
 
     p {
@@ -36,13 +37,26 @@ const BotaoDevolver = styled.button`
     font-family: "Comic Sans MS", sans-serif;
     border: 1px solid black;
     border-radius: 3px;
+
     &:hover {
         background-color: deepskyblue;
         scale: 1.1;
     }
 `
 
-const LivroRecebido = ({ titulo, autor, idioma, paginas, editora, icone, dono }) => {
+const LivroRecebido = ({id, titulo, autor, idioma, paginas, editora, icone, dono}) => {
+
+    const devolverLivro = () => {
+        axios.delete(`http://localhost:1234/api/v1/emprestimos/${id}`)
+            .then(response => console.log(response))
+            .catch(error => console.log(error))
+    }
+
+    const handleClick = () => {
+        devolverLivro();
+        window.location.reload();
+    }
+
     return (
         <>
             <LivroEstilizado>
@@ -56,7 +70,7 @@ const LivroRecebido = ({ titulo, autor, idioma, paginas, editora, icone, dono })
                         editora={editora}
                         dono={dono}
                     />
-                    <BotaoDevolver>Devolver</BotaoDevolver>
+                    <BotaoDevolver onClick={handleClick}>Devolver</BotaoDevolver>
                 </div>
             </LivroEstilizado>
         </>

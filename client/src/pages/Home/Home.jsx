@@ -6,7 +6,8 @@ import EstanteGeral from "../../components/Estantes/EstanteGeral/index.jsx";
 import EstanteConta from "../../components/Estantes/EstanteConta/index.jsx";
 import EstanteEmprestimos from "../../components/Estantes/EstanteEmprestimos/index.jsx";
 import EstanteSolicitacoes from "../../components/Estantes/EstanteSolicitacoes/index.jsx";
-import {Toaster} from "sonner";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 const ContainerEstilizado = styled.div`
     width: 100%;
@@ -32,20 +33,54 @@ const BoxEstilizado = styled.div`
 `;
 
 const Home = () => {
+
+    const [livros, setLivros] = useState([])
+    const [emprestimos, setEmprestimos] = useState([])
+
+    const getLivros = async () => {
+        try {
+            const response = await axios.get('http://localhost:1234/api/v1/livros');
+            setLivros(response.data)
+        } catch (error) {
+            console.log(error.response)
+        }
+    };
+
+    const getEmprestimos = async () => {
+        try {
+            const response = await axios.get('http://localhost:1234/api/v1/emprestimos');
+            setEmprestimos(response.data)
+        } catch (error) {
+            console.log(error.response)
+        }
+    };
+
+    useEffect(() => {
+        getLivros();
+        getEmprestimos();
+    }, []);
+
     return (
         <div>
             <EstilosGlobais/>
-            <Toaster richColors position="bottom-right" />
             <ContainerEstilizado>
                 <BoxEstilizado>
                     <Header/>
                     <Banner/>
-                    <EstanteGeral/>
+                    <EstanteGeral
+                        livros={livros}
+                    />
                 </BoxEstilizado>
                 <BoxEstilizado>
-                    <EstanteConta/>
-                    <EstanteEmprestimos/>
-                    <EstanteSolicitacoes/>
+                    <EstanteConta
+                        livros={livros}
+                    />
+                    <EstanteEmprestimos
+                        livros={emprestimos}
+                    />
+                    <EstanteSolicitacoes
+                        livros={emprestimos}
+                    />
                 </BoxEstilizado>
             </ContainerEstilizado>
         </div>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import LivroRecebido from "../../Livros/LivroRecebido/index.jsx";
-import {useEffect, useState} from "react";
-import axios from "axios";
+import {useContext} from "react";
+import {ContaContext} from "../../../context/ContaContext.jsx";
 
 const EstanteEstilizada = styled.div`
     background-color: white;
@@ -23,23 +23,16 @@ const ScrollableDiv = styled.div`
     overflow: auto;
 `
 
-const EstanteEmprestimos = () => {
+const EstanteEmprestimos = (props) => {
 
-    const [livros, setLivros] = useState([])
-
-    useEffect(() => {
-        const getEmprestimoPelaSolicitacao = async () => {
-            const response = await axios.get(`http://localhost:1234/api/emprestimos/borrower/edras`);
-            setLivros(response.data)
-        };
-        getEmprestimoPelaSolicitacao();
-    });
+    const {sessaoAtual} = useContext(ContaContext);
 
     return (
         <EstanteEstilizada>
             <TituloEstilizado>📘 Livros emprestados:</TituloEstilizado>
             <ScrollableDiv>
-                {livros.map(livro =>
+                {props.livros && props.livros.filter(livro => (livro.borrower_username === sessaoAtual.username && livro.status === true))
+                    .map(livro =>
                     <LivroRecebido
                         key={livro.id}
                         id={livro.id}

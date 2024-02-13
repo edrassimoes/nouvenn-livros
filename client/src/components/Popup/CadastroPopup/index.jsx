@@ -102,117 +102,116 @@ const BotaoSubmit = styled.input`
 
 const CadastroPopup = () => {
 
-    const [titulo, setTitulo] = useState('')
-    const [autor, setAutor] = useState('')
-    const [idioma, setIdioma] = useState('')
-    const [paginas, setPaginas] = useState('')
-    const [editora, setEditora] = useState('')
-    const [icone, setIcone] = useState('')
+    const [livro, setLivro] = useState({
+        titulo: "",
+        autor: "",
+        idioma: "",
+        paginas: "",
+        editora: "",
+        dono: "edras",
+        icone: ""
+    })
 
-    const adicionarLivro = async (data) => {
+    const adicionarLivro = async () => {
         try {
-            const response = await axios.post('http://localhost:1234/api/livros', {data});
-            console.log(data)
+            const response = await axios.post('http://localhost:1234/api/v1/livros', livro);
             console.log(response.data);
         } catch (error) {
             console.log(error.response)
         }
     }
 
+    const handleChange = (field, value) => {
+        setLivro(prevLivro => ({
+            ...prevLivro,
+            [field]: value
+        }));
+    }
+
     const handleSubmit = (evento) => {
         evento.preventDefault();
-        let data = {
-            titulo: titulo,
-            autor: autor,
-            idioma: idioma,
-            paginas: paginas,
-            editora: editora,
-            dono: "edras",
-            icone: icone
-        }
-        adicionarLivro(data);
+        adicionarLivro();
+        window.location.reload();
     }
 
     return (
         <StyledPopup trigger={<BotaoCadastro>📋 Cadastrar um novo livro</BotaoCadastro>} modal closeOnDocumentClick={false}>
             {close => (
                 <div>
-                    <BotaoFechar title="Fechar" onClick={() => {
-                        close()
-                    }}>X</BotaoFechar>
+                    <BotaoFechar title="Fechar" onClick={() => {close()}}>X</BotaoFechar>
                     <h3>📋 Cadrastrar um novo livro</h3>
                     <form onSubmit={handleSubmit}>
                         <Input
                             label="Titulo:"
-                            valor={titulo}
-                            aoAlterar={valor => setTitulo(valor)}
+                            valor={livro.titulo}
+                            aoAlterar={(value) => handleChange('titulo', value)}
                         />
                         <Input
                             label="Autor:"
-                            valor={autor}
-                            aoAlterar={valor => setAutor(valor)}
+                            valor={livro.autor}
+                            aoAlterar={(value) => handleChange('autor', value)}
                         />
                         <Input
                             label="Idioma:"
-                            valor={idioma}
-                            aoAlterar={valor => setIdioma(valor)}
+                            valor={livro.idioma}
+                            aoAlterar={(value) => handleChange('idioma', value)}
                         />
                         <Input
                             label="Número de páginas:"
-                            valor={paginas}
-                            aoAlterar={valor => setPaginas(valor)}
+                            valor={livro.paginas}
+                            aoAlterar={(value) => handleChange('paginas', value)}
                         />
                         <Input
                             label="Editora:"
-                            valor={editora}
-                            aoAlterar={valor => setEditora(valor)}
+                            valor={livro.editora}
+                            aoAlterar={(value) => handleChange('editora', value)}
                         />
                         <SelecaoEstilizada>
                             <legend>Escolha um icone 🎨</legend>
                             <Radio
                                 id="Vermelho"
                                 valor="🔴"
-                                aoAlterar={icone => setIcone(icone)}
+                                aoAlterar={(value) => handleChange('icone', value)}
                             />
                             <Radio
                                 id="Laranja"
                                 valor="🟠"
-                                aoAlterar={icone => setIcone(icone)}
+                                aoAlterar={(value) => handleChange('icone', value)}
                             />
                             <Radio
                                 id="Amarelo"
                                 valor="🟡"
-                                aoAlterar={icone => setIcone(icone)}
+                                aoAlterar={(value) => handleChange('icone', value)}
                             />
                             <Radio
                                 id="Verde"
                                 valor="🟢"
-                                aoAlterar={icone => setIcone(icone)}
+                                aoAlterar={(value) => handleChange('icone', value)}
                             />
                             <Radio
                                 id="Azul"
                                 valor="🔵"
-                                aoAlterar={icone => setIcone(icone)}
+                                aoAlterar={(value) => handleChange('icone', value)}
                             />
                             <Radio
                                 id="Roxo"
                                 valor="🟣"
-                                aoAlterar={icone => setIcone(icone)}
+                                aoAlterar={(value) => handleChange('icone', value)}
                             />
                             <Radio
                                 id="Marrom"
                                 valor="🟤"
-                                aoAlterar={icone => setIcone(icone)}
+                                aoAlterar={(value) => handleChange('icone', value)}
                             />
                             <Radio
                                 id="Preto"
                                 valor="⚫"
-                                aoAlterar={icone => setIcone(icone)}
+                                aoAlterar={(value) => handleChange('icone', value)}
                             />
                             <Radio
                                 id="Branco"
                                 valor="⚪"
-                                aoAlterar={icone => setIcone(icone)}
+                                aoAlterar={(value) => handleChange('icone', value)}
                             />
                         </SelecaoEstilizada>
                         <BotaoSubmit type="submit"/>

@@ -1,18 +1,14 @@
 import {Router} from "express";
 import {
     addEmprestimo, deleteEmprestimo,
-    getEmprestimoPelaSolicitacao,
-    getEmprestimoPeloDono,
-    getTabelaEmprestimos, updateEmprestimo
+    getEmprestimos, updateEmprestimo
 } from "./controller.js";
 
 const router = Router();
 
-router.get('/', getTabelaEmprestimos);
-router.get('/borrower/:b_username', getEmprestimoPelaSolicitacao);
-router.get('/owner/:o_username', getEmprestimoPeloDono);
+router.get('/', getEmprestimos);
 router.post('/', addEmprestimo);
-router.post('/aprovar', updateEmprestimo)
-router.delete('/remover/:book_id', deleteEmprestimo)
+router.put('/', updateEmprestimo)
+router.delete('/:id', deleteEmprestimo)
 
 export default router;
