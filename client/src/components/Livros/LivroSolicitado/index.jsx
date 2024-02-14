@@ -21,6 +21,8 @@ const LivroEstilizado = styled.div`
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            padding: 5px;
+            margin-right: 3px;
         }
     }
 
@@ -34,7 +36,6 @@ const LivroEstilizado = styled.div`
     }
 
 `
-
 const BotaoAceitar = styled.button`
 
     cursor: pointer;
@@ -46,7 +47,6 @@ const BotaoAceitar = styled.button`
         scale: 1.1;
     }
 `
-
 const BotaoNegar = styled.button`
 
     font-family: "Comic Sans MS", sans-serif;
@@ -63,18 +63,15 @@ const BotaoNegar = styled.button`
 const LivroSolicitado = ({id, titulo, autor, idioma, paginas, editora, icone, dono}) => {
 
     const aprovarSolicitacao = () => {
-        axios.put('http://localhost:1234/api/v1/emprestimos', {
-            status: true,
-            id: id,
-        })
+        axios.put(`http://localhost:1234/api/v1/livros/${id}`)
             .then(response => console.log(response))
-            .catch(error => console.log(error))
+            .catch(error => console.log(error));
     }
 
     const negarSolicitacao = () => {
         axios.delete(`http://localhost:1234/api/v1/emprestimos/${id}`)
             .then(response => console.log(response))
-            .catch(error => console.log(error))
+            .catch(error => console.log(error));
     }
 
     const aprovarClick = () => {

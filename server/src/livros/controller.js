@@ -38,11 +38,10 @@ export const deleteLivro = (req, res) => {
 }
 
 export const updateLivro = (req, res) => {
-    const id = parseInt(req.params.id)
-    const {titulo, autor, idioma, paginas, editora, icone} = req.body;
+    const id = parseInt(req.params.id);
     try {
         pool.connect();
-        pool.query(updateBook, [titulo, autor, idioma, paginas, editora, icone, id]);
+        pool.query(updateBook, [id]);
         res.status(201).send('As informações do livro foram atualizadas com sucesso.');
     } catch (e) {
         console.log(e)

@@ -22,7 +22,7 @@ export const addUsuario = async (req, res) => {
     const {username, email, password} = req.body;
     try {
         pool.connect();
-        await pool.query(createUser, [username, email, password]);
+        await pool.query(createUser, [username, email, password, true]);
         res.status(201).send('Usuário cadastrado com sucesso!');
     } catch (e) {
         console.log(e)
@@ -46,11 +46,10 @@ export const deleteUsuario = async (req, res) => {
 
 export const updateUsuario = async (req, res) => {
     const username = (req.params.username)
-    const {email, password} = req.body;
     try {
         pool.connect();
-        await pool.query(updateUser, [email, password, username]);
-        res.status(201).send('As informações do usuário foram atualizadas com sucesso.');
+        await pool.query(updateUser, [username, true]);
+        res.status(201).send('As informações do usuário foram atualizadas.');
     } catch (e) {
         console.log(e)
     } finally {

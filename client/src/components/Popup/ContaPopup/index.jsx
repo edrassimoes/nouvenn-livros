@@ -6,7 +6,7 @@ import {ContaContext} from "../../../context/ContaContext.jsx";
 const StyledPopup = styled(Popup)`
     
     div &-content {
-        height: 135px;
+        height: 130px;
         margin-top: 8px;
         background: white;
         outline: 3px solid black;
@@ -34,13 +34,6 @@ const StyledPopup = styled(Popup)`
                 scale: 1.1;
             }
         }
-
-        @media (max-width: 600px) {
-            position: relative;
-            right: 20px;
-            height: 170px;
-        }
-        
     }
     
     &-arrow {
@@ -57,7 +50,6 @@ const StyledPopup = styled(Popup)`
     }
     
 `
-
 const BotaoUsuario = styled.button`
     cursor: pointer;
     font-family: "Comic Sans MS", sans-serif;
@@ -88,15 +80,15 @@ const BotaoUsuario = styled.button`
 
 const ContaPopup = () => {
 
-    const {sessaoAtual} = useContext(ContaContext)
+    const {data} = useContext(ContaContext);
 
     return (
         <StyledPopup trigger={<BotaoUsuario>Minhas informações 👤</BotaoUsuario>} closeOnDocumentClick={false}>
             {close => (
                 <div>
-                    <p><b>Nome de usuário: </b>{sessaoAtual.username}</p>
-                    <p><b>E-mail: </b>{sessaoAtual.email}</p>
-                    <p><b>Senha: </b>{sessaoAtual.password}</p>
+                    <p><b>Nome de usuário: </b>{data.username}</p>
+                    <p><b>E-mail: </b>{data.email}</p>
+                    <p><b>Senha: </b>{data.password}</p>
                     <button title="Fechar" onClick={() => {close()}}>X</button>
                 </div>
             )}

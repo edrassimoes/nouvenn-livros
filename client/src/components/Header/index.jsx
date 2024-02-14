@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import SearchBar from "../SearchBar/index.jsx";
 import ContaPopup from "../Popup/ContaPopup/index.jsx";
+import {useNavigate} from "react-router-dom";
 
 const HeaderEstilizado = styled.header`
     background-color: white;
@@ -9,13 +9,23 @@ const HeaderEstilizado = styled.header`
     display: flex;
     justify-content: space-between;
     padding: 10px;
+    
+    p {
+        margin: 0;
+        font-family: "Comic Sans MS", sans-serif;
+    }
 
     @media (max-width: 600px) {
         padding: 3px;
+        
+        p {
+            align-self: center;
+            margin-left: 20px;
+        }
+        
     }
     
 `
-
 const BotaoSair = styled.button`
     color: red;
     cursor: pointer;
@@ -43,12 +53,20 @@ const BotaoSair = styled.button`
 `
 
 const Header = () => {
+
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        localStorage.clear();
+        navigate('/');
+    };
+
     return (
         <HeaderEstilizado>
-            <SearchBar/>
+            <p>📚 Emprestimo de Livros</p>
             <section>
                 <ContaPopup/>
-                <BotaoSair>SAIR</BotaoSair>
+                <BotaoSair onClick={handleClick}>SAIR</BotaoSair>
             </section>
         </HeaderEstilizado>
     );

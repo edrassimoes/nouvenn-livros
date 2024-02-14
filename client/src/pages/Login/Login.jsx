@@ -7,7 +7,9 @@ import {ContaContext} from "../../context/ContaContext.jsx";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {Toaster, toast} from "sonner";
+import {SyncLoader} from "react-spinners";
 
+// Estilização dos componentes React pelo Styled-Components:
 const PageContainer = styled.div`
     background-color: ghostwhite;
     width: 100vw;
@@ -17,7 +19,17 @@ const PageContainer = styled.div`
     align-items: center;
     flex-direction: column;
 `;
-
+const LoadingContainer = styled.div`
+    background-color: ghostwhite;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Comic Sans MS", sans-serif;
+    gap: 40px;
+`;
 const LoginContainer = styled.div`
     display: flex;
     justify-content: center;
@@ -71,7 +83,6 @@ const LoginContainer = styled.div`
     }
 
 `;
-
 const BotaoEntrar = styled.input`
     cursor: pointer;
     font-size: larger;
@@ -91,40 +102,55 @@ const BotaoEntrar = styled.input`
 
 const Login = () => {
 
-    const {usuarios, setUsuarios, setSessaoAtual} = useContext(ContaContext);
+    // Utilizado para definir a sessão atual.
+    const {setData} = useContext(ContaContext);
 
+    // Armazena a tebela "users" do banco de dados.
+    const [usuarios, setUsuarios] = useState([])
+
+    // Coleta as informações dos inputs.
     const [usuario, setUsuario] = useState({
         username: "",
-        email: "",
         password: ""
     })
 
+    // Armazena o status da conexão com o banco para posteriormente carregar os componentes.
+    const [loading, setLoading] = useState(true);
+
+    // Utilizado para alterar a rota da pagina após o login.
     const navigate = useNavigate();
 
+    // Acessa a tabela "users" do banco de dados.
     const getUsuarios = async () => {
         try {
             const response = await axios.get('http://localhost:1234/api/v1/usuarios/');
-            setUsuarios(response.data)
+            const userTable = response.data;
+            setUsuarios(userTable)
         } catch (error) {
             console.error(error);
+        } finally {
+            setLoading(false);
         }
     }
 
-    const validaUsuario = () => {
+    // Valida se o usuário existe no banco e depois salva a sessão atual no Local Storage.
+    const validaUsuario = async () => {
         const validacao = usuarios.find(conta => (conta.username === usuario.username && conta.password === usuario.password));
         if (validacao) {
-            setSessaoAtual(validacao);
+            localStorage.setItem('sessaoAtual', JSON.stringify(validacao));
             navigate('/home');
         } else {
             toast.error('Usuário ou senha incorretos.');
             setUsuario({
                 username: "",
                 email: "",
-                password: ""
+                password: "",
+                logged: false
             });
         }
     }
 
+    // Captura os valores dos inputs e armazena na variável usuário.
     const handleChange = (field, value) => {
         setUsuario(prevUser => ({
             ...prevUser,
@@ -132,15 +158,33 @@ const Login = () => {
         }));
     }
 
+    // Inicia o processo de verificação dos dados do usuário.
     const handleSubmit = (evento) => {
         evento.preventDefault();
         validaUsuario();
     };
 
+    // Quando o componente carregar, já inicia a requisição da tabelas usuários ao banco.
     useEffect(() => {
         getUsuarios();
     }, []);
 
+    // Retorna uma tela momentanea até que a requisição ao banco seja concluída.
+    if (loading) {
+        return (
+            <div>
+                <EstilosGlobais/>
+                <LoadingContainer>
+                    <SyncLoader
+                        color="black"
+                    />
+                    <p>📊 Obtendo os dados necessários, por favor aguarde.</p>
+                </LoadingContainer>
+            </div>
+        )
+    }
+
+    // Retorna a página de LogIn.
     return (
         <div>
             <EstilosGlobais/>

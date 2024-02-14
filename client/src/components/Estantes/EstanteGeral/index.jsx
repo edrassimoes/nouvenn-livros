@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import LivroGeral from "../../Livros/LivroGeral/index.jsx";
-import axios from "axios";
-import {useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import {ContaContext} from "../../../context/ContaContext.jsx";
+import SearchBar from "../../SearchBar/index.jsx";
 
 const EstanteEstilizada = styled.div`
     background-color: white;
@@ -13,20 +13,22 @@ const EstanteEstilizada = styled.div`
     display: flex;
     flex-direction: column;
 `
-
 const TituloEstilizado = styled.p`
     font-family: "Comic Sans MS", sans-serif;
     padding: 0;
     margin: 0 0 3px 7px;
 `
-
 const MenssagemEstilizada = styled.p`
     font-family: "Comic Sans MS", sans-serif;
     color: gray;
     align-self: center;
-    margin: 0 0 6px 0;
-`
+    margin: 10px 0;
 
+    @media (max-width: 600px) {
+        font-size: 14px;
+    }
+    
+`
 const ScrollableDiv = styled.div`
     min-height: fit-content;
     max-height: 475px;
@@ -35,14 +37,32 @@ const ScrollableDiv = styled.div`
 
 const EstanteGeral = (props) => {
 
-    const {sessaoAtual} = useContext(ContaContext);
+    const {data} = useContext(ContaContext);
+
+    const [busca, setBusca] = useState("")
+
+    const [tabelaBusca, setTabelaBusca] = useState([])
+
+    const handleChange = (value) => {
+        setBusca(value);
+    }
+
+    const handleSubmit = (evento) => {
+        evento.preventDefault();
+        const livrosFiltrados = props.livros.filter(livro => livro.titulo === busca);
+        setTabelaBusca(livrosFiltrados);
+    }
 
     return (
         <EstanteEstilizada>
             <TituloEstilizado>📙 Livros disponíveis:</TituloEstilizado>
-            <MenssagemEstilizada>Aqui aparecerão somente os livros de outros usuários.</MenssagemEstilizada>
+            <SearchBar
+                valor={busca}
+                aoAlterar={handleChange}
+                aoEnviar={handleSubmit}
+            />
             <ScrollableDiv>
-                {props.livros && props.livros.filter(livro => livro.dono =! sessaoAtual.username)
+                {tabelaBusca ? props.livros.filter(livro => livro.dono !== data.username && !livro.emprestado)
                     .map(livro =>
                     <LivroGeral
                         key={livro.id}
@@ -55,8 +75,9 @@ const EstanteGeral = (props) => {
                         icone={livro.icone}
                         dono={livro.dono}
                     />
-                )}
+                ) : tabelaBusca}
             </ScrollableDiv>
+            <MenssagemEstilizada>〰 Aqui aparecerão somente os livros de outros usuários. 〰</MenssagemEstilizada>
         </EstanteEstilizada>
     );
 };

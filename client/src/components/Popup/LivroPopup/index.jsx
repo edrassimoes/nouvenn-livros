@@ -14,6 +14,10 @@ const BotaoInfo = styled.button`
         scale: 1.1;
     }
 
+    @media (max-width: 600px) {
+        align-self: stretch;
+    }
+
 `
 
 const StyledPopup = styled(Popup)`
@@ -44,6 +48,7 @@ const StyledPopup = styled(Popup)`
             border: 2px solid black;
             border-radius: 3px;
             background: red;
+
             &:hover {
                 scale: 1.3;
             }
@@ -51,10 +56,23 @@ const StyledPopup = styled(Popup)`
 
         p {
             font-family: "Comic Sans MS", sans-serif;
+            margin: 8px;
         }
-        
+
         b {
             font-size: 18px;
+        }
+
+        section {
+            
+            p {
+                border: 3px dotted black;
+                border-radius: 10px;
+                padding: 10px;
+                margin: 20px 0 0 0;
+                background: lightgray;
+            }
+            
         }
 
     }
@@ -68,11 +86,14 @@ const LivroPopup = ({titulo, autor, paginas, editora, dono}) => {
                 <div>
                     <button title="Fechar" onClick={() => {close()}}>X</button>
                     <p><b>📖 Informações sobre este livro:</b></p>
+                    <p>-----------------------------------------------</p>
                     <p><b>Título:</b> {titulo}</p>
                     <p><b>Autor:</b> {autor}</p>
                     <p><b>Número de páginas:</b> {paginas}</p>
                     <p><b>Editora:</b> {editora}</p>
-                    <p><b>Dono:</b> {dono}</p>
+                    <section>
+                        <p><b>👤 Dono: </b>{dono}</p>
+                    </section>
                 </div>
             )}
         </StyledPopup>

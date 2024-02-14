@@ -10,13 +10,11 @@ const EstanteEstilizada = styled.div`
     height: 100%;
     padding: 10px;
 `
-
 const TituloEstilizado = styled.p`
     font-family: "Comic Sans MS", sans-serif;
     padding: 0;
     margin: 0 0 3px 7px;
 `
-
 const ScrollableDiv = styled.div`
     min-height: fit-content;
     max-height: 475px;
@@ -25,13 +23,13 @@ const ScrollableDiv = styled.div`
 
 const EstanteSolicitacoes = (props) => {
 
-    const {sessaoAtual} = useContext(ContaContext);
+    const {data} = useContext(ContaContext);
 
     return (
         <EstanteEstilizada>
             <TituloEstilizado>📗 Livros solicitados:</TituloEstilizado>
             <ScrollableDiv>
-                {props.livros && props.livros.filter(livro => (livro.owner_username === sessaoAtual.username && livro.status === false))
+                {props.emprestimos && props.emprestimos.filter(emprestimo => (emprestimo.owner_username === data.username && !emprestimo.emprestado))
                     .map(livro =>
                     <LivroSolicitado
                         key={livro.id}

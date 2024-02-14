@@ -38,6 +38,7 @@ const Input = (props) => {
                 <input
                     value={props.valor}
                     onChange={aoDigitar}
+                    placeholder={props.placeholder}
                     required
                 />
             </label>

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import LivroPopup from "../../Popup/LivroPopup/index.jsx";
-import axios from "axios";
 
 const LivroEstilizado = styled.div`
     background-color: whitesmoke;
@@ -12,56 +11,51 @@ const LivroEstilizado = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    
-    div {
-        display: flex;
-        gap: 5px;
-        margin-right: 20px;
-        @media (max-width: 600px) {
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 5px;
-            margin-right: 3px;
-        }
-    }
+    opacity: 0.33;
 
     p {
         font-family: "Comic Sans MS", sans-serif;
     }
 
-
-`
-const BotaoRemover = styled.button`
-    cursor: pointer;
-    font-family: "Comic Sans MS", sans-serif;
-    border: 1px solid black;
-    border-radius: 3px;
+    div {
+        display: flex;
+        gap: 5px;
+        margin-right: 20px;
+        align-items: center;
+        
+        p {
+            color: darkred;
+            margin-right: 8px;
+        }
+        
+        @media (max-width: 600px) {
+            flex-direction: column;
+            margin: 5px 10px;
+            p {
+                margin: 0;
+            }
+        }
+    }
+    
     &:hover {
-        background-color: red;
-        color: white;
-        scale: 1.1;
+        opacity: 1;
+        
+        div > p {
+            color: red;
+        }
+        
     }
+
 `
 
-const LivroProprio = ({ id, titulo, autor, idioma, paginas, editora, icone, dono }) => {
-
-    const deletarLivro = () => {
-        axios.delete(`http://localhost:1234/api/v1/livros/${id}`)
-            .then(response => console.log(response))
-            .catch(error => console.log(error))
-    }
-
-    const handleClick = () => {
-        deletarLivro();
-        window.location.reload();
-    }
+const LivroEmprestado = ({titulo, autor, idioma, paginas, editora, icone, dono, emprestado}) => {
 
     return (
         <>
             <LivroEstilizado>
                 <p> {icone} Título: {titulo} | Autor: {autor}</p>
                 <div>
+                    <p><b>Emprestado para:</b> {emprestado}</p>
                     <LivroPopup
                         titulo={titulo}
                         autor={autor}
@@ -70,11 +64,10 @@ const LivroProprio = ({ id, titulo, autor, idioma, paginas, editora, icone, dono
                         editora={editora}
                         dono={dono}
                     />
-                    <BotaoRemover onClick={handleClick}>Remover</BotaoRemover>
                 </div>
             </LivroEstilizado>
         </>
     );
 };
 
-export default LivroProprio
+export default LivroEmprestado

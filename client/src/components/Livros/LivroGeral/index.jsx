@@ -23,6 +23,8 @@ const LivroEstilizado = styled.div`
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            padding: 5px;
+            margin-right: 3px;
         }
     }
 
@@ -31,7 +33,6 @@ const LivroEstilizado = styled.div`
     }
 
 `
-
 const BotaoSolicitar = styled.button`
     cursor: pointer;
     font-family: "Comic Sans MS", sans-serif;
@@ -46,12 +47,12 @@ const BotaoSolicitar = styled.button`
 
 const LivroGeral = ({id, titulo, autor, idioma, paginas, editora, icone, dono}) => {
 
-    const {sessaoAtual} = useContext(ContaContext);
+    const {data} = useContext(ContaContext);
 
     const addEmprestimo = () => {
         axios.post('http://localhost:1234/api/v1/emprestimos', {
             o_username: dono,
-            b_username: sessaoAtual.username,
+            b_username: data.username,
             book_id: id,
         })
             .then(response => console.log(response))

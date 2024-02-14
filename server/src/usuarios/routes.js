@@ -4,8 +4,8 @@ import {addUsuario, deleteUsuario, getUsuarios, updateUsuario} from "./controlle
 const router = Router();
 
 router.get('/', getUsuarios);
-// router.post('/', addUsuario);
+router.post('/', addUsuario);
 // router.delete('/', deleteUsuario)
-// router.put('/', updateUsuario)
+router.put('/:username', updateUsuario)
 
 export default router;

@@ -55,7 +55,7 @@ const Banner = () => {
 
     return (
         <ContainerImagem>
-            <img src="/assets/Logo2.png" alt=""/>
+            <img src="/assets/logo.png" alt=""/>
             <Quotes>
                 <h3>"{quote.content}"</h3>
                 <h4><b>- {quote.author}</b></h4>

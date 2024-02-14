@@ -22,6 +22,8 @@ const LivroEstilizado = styled.div`
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            padding: 5px;
+            margin-right: 3px;
         }
 
     }
@@ -31,7 +33,6 @@ const LivroEstilizado = styled.div`
     }
 
 `
-
 const BotaoDevolver = styled.button`
     cursor: pointer;
     font-family: "Comic Sans MS", sans-serif;
@@ -46,14 +47,21 @@ const BotaoDevolver = styled.button`
 
 const LivroRecebido = ({id, titulo, autor, idioma, paginas, editora, icone, dono}) => {
 
-    const devolverLivro = () => {
+    const encerrarEmprestimo= () => {
         axios.delete(`http://localhost:1234/api/v1/emprestimos/${id}`)
             .then(response => console.log(response))
-            .catch(error => console.log(error))
+            .catch(error => console.log(error));
+    }
+
+    const devolverLivro = () => {
+        axios.put(`http://localhost:1234/api/v1/livros/${id}`)
+            .then(response => console.log(response))
+            .catch(error => console.log(error));
     }
 
     const handleClick = () => {
         devolverLivro();
+        encerrarEmprestimo();
         window.location.reload();
     }
 

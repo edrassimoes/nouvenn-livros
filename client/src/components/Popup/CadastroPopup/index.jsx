@@ -1,12 +1,13 @@
 import Popup from "reactjs-popup";
 import styled from "styled-components";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import Input from "../../Input/index.jsx";
 import Radio from "../../Radio/index.jsx";
 import axios from "axios";
+import {ContaContext} from "../../../context/ContaContext.jsx";
 
 const StyledPopup = styled(Popup)`
-
+    
     &-overlay {
         background-color: rgba(0, 0, 0, 0.5);
     }
@@ -30,7 +31,6 @@ const StyledPopup = styled(Popup)`
 
     }
 `
-
 const BotaoCadastro = styled.button`
 
     height: 35px;
@@ -42,11 +42,10 @@ const BotaoCadastro = styled.button`
 
     &:hover {
         background-color: lightgreen;
-        scale: 1.1;
+        scale: 1.05;
     }
 
 `
-
 const BotaoFechar = styled.button`
     font-family: "Comic Sans MS", sans-serif;
     cursor: pointer;
@@ -64,7 +63,6 @@ const BotaoFechar = styled.button`
         scale: 1.3;
     }
 `
-
 const SelecaoEstilizada = styled.fieldset`
     margin: 7px 0;
     border: 2px solid black;
@@ -83,7 +81,6 @@ const SelecaoEstilizada = styled.fieldset`
     }
 
 `
-
 const BotaoSubmit = styled.input`
 
     border: 1px solid black;
@@ -102,13 +99,15 @@ const BotaoSubmit = styled.input`
 
 const CadastroPopup = () => {
 
+    const {data} = useContext(ContaContext);
+
     const [livro, setLivro] = useState({
         titulo: "",
         autor: "",
         idioma: "",
         paginas: "",
         editora: "",
-        dono: "edras",
+        dono: data.username,
         icone: ""
     })
 
@@ -214,7 +213,7 @@ const CadastroPopup = () => {
                                 aoAlterar={(value) => handleChange('icone', value)}
                             />
                         </SelecaoEstilizada>
-                        <BotaoSubmit type="submit"/>
+                        <BotaoSubmit type="submit" onClick={handleSubmit}/>
                     </form>
                 </div>
             )}
