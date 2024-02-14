@@ -38,7 +38,7 @@ export const deleteLivro = (req, res) => {
 }
 
 export const updateLivro = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = (req.params.id);
     try {
         pool.connect();
         pool.query(updateBook, [id]);

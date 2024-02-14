@@ -1,6 +1,6 @@
 export const getUsers = 'select * from users';
 
-export const createUser = 'insert into users (username, email, password, logged) values ($1, $2, $3, $4)'
+export const createUser = 'insert into users (username, email, password) values ($1, $2, $3)'
 
 export const deleteUser = 'delete from users where username = $1'
 

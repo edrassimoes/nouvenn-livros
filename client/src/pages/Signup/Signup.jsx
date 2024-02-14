@@ -1,11 +1,11 @@
 import Input from "../../components/Input/index.jsx";
 import styled from "styled-components";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import EstilosGlobais from "../../components/EstilosGlobais/index.jsx";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {toast, Toaster} from "sonner";
-
+import {SyncLoader} from "react-spinners";
 
 const PageContainer = styled.div`
     background-color: ghostwhite;
@@ -17,7 +17,17 @@ const PageContainer = styled.div`
     flex-direction: column;
 
 `;
-
+const LoadingContainer = styled.div`
+    background-color: ghostwhite;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Comic Sans MS", sans-serif;
+    gap: 40px;
+`;
 const SingupContainer = styled.div`
     display: flex;
     justify-content: center;
@@ -70,7 +80,6 @@ const SingupContainer = styled.div`
     }
 
 `;
-
 const BotaoCriar = styled.input`
     cursor: pointer;
     font-size: larger;
@@ -90,31 +99,91 @@ const BotaoCriar = styled.input`
 
 const Signup = () => {
 
-    const [nomeCriar, setNomeCriar] = useState('');
-    const [senhaCriar, setSenhaCriar] = useState('');
-    const [emailCriar, setEmailCriar] = useState('');
+    // Armazena a tebela "users" do banco de dados.
+    const [usuarios, setUsuarios] = useState([])
+
+    const [nome, setNome] = useState('');
+    const [senha, setSenha] = useState('');
+    const [email, setEmail] = useState('');
+
+    // Armazena o status da conexão com o banco para posteriormente carregar os componentes.
+    const [loading, setLoading] = useState(true);
 
     const navigate = useNavigate();
 
-    const addUsuario = () => {
-        axios.post('http://localhost:1234/api/usuarios', {
-            username: nomeCriar ? nomeCriar : null,
-            email: emailCriar ? emailCriar : null,
-            password: senhaCriar ? senhaCriar : null,
-        })
-            .then(response => console.log(response))
+    // Acessa a tabela "users" do banco de dados.
+    const getUsuarios = async () => {
+        try {
+            const response = await axios.get('http://localhost:1234/api/v1/usuarios');
+            const userTable = response.data;
+            setUsuarios(userTable)
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    const addUsuario = async () => {
+        try {
+            await axios.post('http://localhost:1234/api/v1/usuarios', {
+                username: nome,
+                email: email,
+                password: senha
+            });
+        } catch (error) {
+            console.log(error.response);
+        }
+    }
+
+    // Valida se o usuário existe no banco e depois salva a sessão atual no Local Storage.
+    const validaUsuario = () => {
+        let validacao = usuarios.find(conta => conta.username === nome);
+        if (validacao) {
+            toast.error('Nome de usuário já existente no sistema, tente outro.');
+        } else if (email && senha) {
+            addUsuario();
+            toast.success('Usuário cadastrado com sucesso! 🥳');
+            setLoading(true);
+            setTimeout(mudaDePagina, 2000);
+        } else {
+            toast.error('Preencha todos os dados.');
+        }
     }
 
     const onSubmitCriar = (evento) => {
         evento.preventDefault();
-        addUsuario();
+        validaUsuario();
+    }
+
+    const mudaDePagina = () => {
+        navigate('/');
+    }
+
+    useEffect(() => {
+        getUsuarios();
+    }, []);
+
+    // Retorna uma tela momentanea até que a requisição ao banco seja concluída.
+    if (loading) {
+        return (
+            <div>
+                <EstilosGlobais/>
+                <LoadingContainer>
+                    <SyncLoader
+                        color="black"
+                    />
+                    <p>📊 Obtendo os dados necessários, por favor aguarde.</p>
+                </LoadingContainer>
+            </div>
+        )
     }
 
     return (
         <div>
             <EstilosGlobais/>
             <PageContainer>
-                <Toaster richColors position="bottom-right" />
+                <Toaster richColors position="top-center"/>
                 <SingupContainer>
                     <h1>✨ Criar uma conta ✨</h1>
                     <h3>Ficamos felizes em recebelo(a) em nossa comunidade!</h3>
@@ -123,18 +192,18 @@ const Signup = () => {
                     <form>
                         <Input
                             label="Nome de usuário:"
-                            valor={nomeCriar}
-                            aoAlterar={nome => setNomeCriar(nome)}
+                            valor={nome}
+                            aoAlterar={nome => setNome(nome)}
                         />
                         <Input
                             label="E-mail:"
-                            valor={emailCriar}
-                            aoAlterar={email => setEmailCriar(email)}
+                            valor={email}
+                            aoAlterar={email => setEmail(email)}
                         />
                         <Input
                             label="Senha:"
-                            valor={senhaCriar}
-                            aoAlterar={senha => setSenhaCriar(senha)}
+                            valor={senha}
+                            aoAlterar={senha => setSenha(senha)}
                         />
                         <section>
                             <BotaoCriar type="submit" value="Cadastrar-se" onClick={onSubmitCriar}/>

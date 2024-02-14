@@ -22,7 +22,7 @@ export const addUsuario = async (req, res) => {
     const {username, email, password} = req.body;
     try {
         pool.connect();
-        await pool.query(createUser, [username, email, password, true]);
+        await pool.query(createUser, [username, email, password]);
         res.status(201).send('Usuário cadastrado com sucesso!');
     } catch (e) {
         console.log(e)

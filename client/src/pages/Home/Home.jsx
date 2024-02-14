@@ -117,7 +117,10 @@ const Home = () => {
             <EstilosGlobais/>
             <ContainerEstilizado>
                 <BoxEstilizado>
-                    <Header/>
+                    <Header
+                        valor={loading}
+                        aoAlterar={(value) => setLoading(value)}
+                    />
                     <Banner/>
                     <EstanteGeral
                         livros={livros}

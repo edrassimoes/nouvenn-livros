@@ -52,13 +52,18 @@ const BotaoSair = styled.button`
     
 `
 
-const Header = () => {
+const Header = (props) => {
 
     const navigate = useNavigate();
 
+    const mudaDePagina = () => {
+        navigate('/');
+    }
+
     const handleClick = () => {
         localStorage.clear();
-        navigate('/');
+        props.aoAlterar(true);
+        setTimeout(mudaDePagina, 2000);
     };
 
     return (

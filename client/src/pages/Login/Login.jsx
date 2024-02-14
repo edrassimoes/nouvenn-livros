@@ -138,7 +138,8 @@ const Login = () => {
         const validacao = usuarios.find(conta => (conta.username === usuario.username && conta.password === usuario.password));
         if (validacao) {
             localStorage.setItem('sessaoAtual', JSON.stringify(validacao));
-            navigate('/home');
+            setLoading(true);
+            setTimeout(mudaDePagina, 2000);
         } else {
             toast.error('Usuário ou senha incorretos.');
             setUsuario({
@@ -163,6 +164,11 @@ const Login = () => {
         evento.preventDefault();
         validaUsuario();
     };
+
+    // Redireciona o usuário.
+    const mudaDePagina = () => {
+        navigate('/home');
+    }
 
     // Quando o componente carregar, já inicia a requisição da tabelas usuários ao banco.
     useEffect(() => {

@@ -114,9 +114,8 @@ const CadastroPopup = () => {
     const adicionarLivro = async () => {
         try {
             const response = await axios.post('http://localhost:1234/api/v1/livros', livro);
-            console.log(response.data);
         } catch (error) {
-            console.log(error.response)
+            console.log(error.response);
         }
     }
 
