@@ -2,39 +2,51 @@ import pool from "../../db.js";
 import { createRelation, deleteRelation, getTable } from "./queries.js";
 
 export const getEmprestimos = async (req, res) => {
+    let client;
     try {
-        pool.connect();
-        const resultado = await pool.query(getTable);
-        res.status(200).json(resultado.rows)
+        client = await pool.connect();
+        const resultado = await client.query(getTable);
+        res.status(200).json(resultado.rows);
     } catch (e) {
-        console.log(e)
+        console.error(e);
+        res.status(500).json({ error: 'Erro ao buscar empréstimos.' });
     } finally {
-        // fechar conexão
+        if (client) {
+            client.release(); // Libere a conexão de volta ao pool
+        }
     }
-}
+};
 
-export const addEmprestimo = (req, res) => {
-    const {o_username, b_username, book_id} = req.body;
+export const addEmprestimo = async (req, res) => {
+    let client;
+    const { o_username, b_username, book_id } = req.body;
     try {
-        pool.connect();
-        pool.query(createRelation, [o_username, b_username, book_id]);
-        res.status(201).send('Emprestimo solicitado com sucesso.');
+        client = await pool.connect();
+        await client.query(createRelation, [o_username, b_username, book_id]);
+        res.status(201).json({ message: 'Empréstimo livro-solicitado com sucesso.' });
     } catch (e) {
-        console.log(e)
+        console.error(e);
+        res.status(500).json({ error: 'Erro ao solicitar empréstimo.' });
     } finally {
-        // fechar conexão
+        if (client) {
+            client.release(); // Libere a conexão de volta ao pool
+        }
     }
-}
+};
 
-export const deleteEmprestimo = (req, res) => {
-    const id = (req.params.id)
+export const deleteEmprestimo = async (req, res) => {
+    let client;
+    const id = req.params.id;
     try {
-        pool.connect();
-        pool.query(deleteRelation, [id]);
-        res.status(200).send('Emprestimo encerrado ou negado.');
+        client = await pool.connect();
+        await client.query(deleteRelation, [id]);
+        res.status(200).json({ message: 'Empréstimo encerrado ou negado.' });
     } catch (e) {
-        console.log(e)
+        console.error(e);
+        res.status(500).json({ error: 'Erro ao encerrar empréstimo.' });
     } finally {
-        // fechar conexão
+        if (client) {
+            client.release(); // Libere a conexão de volta ao pool
+        }
     }
-}
+};

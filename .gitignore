@@ -9,7 +9,6 @@ lerna-debug.log*
 
 database
 client/node_modules
-.gitignore
 dist
 dist-ssr
 *.local
