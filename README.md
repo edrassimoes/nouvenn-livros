@@ -5,7 +5,7 @@
 - Node.js e npm devem estar instalados na sua máquina.
 
 - Você precisa ter o PostgreSQL instalado na sua máquina para o funcionamento correto da aplicação.
--**Por favor, certifique-se de configurar o PostgreSQL com as seguintes credenciais:**
+- **Por favor, certifique-se de configurar o PostgreSQL com as seguintes credenciais:**
   - Usuário: "postgres"
   - Host: "localhost"
   - Banco de Dados: "postgres"
