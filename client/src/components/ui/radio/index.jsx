@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const RadioEstilizado = styled.div`
     input:hover {
-        cursor: pointer;
+        
     }
 `
 

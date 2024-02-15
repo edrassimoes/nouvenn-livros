@@ -7,11 +7,13 @@ const ContainerImagem = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 0;
 
     img {
-        margin: 20px 0 5px 0;
-        width: 60%;
+        margin: 10px;
+        width: 90%;
+        @media (max-width: 600px) {
+            width: 200%;
+        }
     }
 
 `
@@ -21,7 +23,7 @@ const Quotes = styled.section`
     flex-direction: column;
     font-family: "Comic Sans MS", sans-serif;
     font-style: italic;
-    margin: 10px;
+    margin: 5px;
     padding: 5px 30px 5px 15px;
     border: 2px solid black;
     border-radius: 8px;
@@ -45,21 +47,21 @@ const Quotes = styled.section`
 
 const Banner = () => {
 
-    const [quote, setQuote] = useState('')
+    const [quote, setQuote] = useState('');
+
+    // https://github.com/lukePeavey/quotable
+    const getQuote = async () => {
+        const response = await axios.get('https://api.quotable.io/quotes/random?limit=1')
+        setQuote(response.data[0])
+    };
 
     useEffect(() => {
-        // https://github.com/lukePeavey/quotable
-        const getQuote = async () => {
-            const response = await axios.get('https://api.quotable.io/quotes/random?limit=1')
-            setQuote(response.data[0])
-        };
         getQuote();
     }, []);
 
     return (
         <ContainerImagem>
-            <img src="/src/assets/img-banner.png" alt=""/>
-            <img src=""/>
+            <img src="/src/assets/teste.png" alt="Estante de livros"/>
             <Quotes>
                 <p id="quote">"{quote.content}"</p>
                 <p id="autor">〰 {quote.author}</p>

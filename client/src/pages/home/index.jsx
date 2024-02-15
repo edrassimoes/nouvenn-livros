@@ -12,7 +12,6 @@ import {ContaContext} from "../../context/conta-context.jsx";
 
 // Estilização dos componentes React pelo Styled-Components:
 const ContainerEstilizado = styled.div`
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🤚🏻</text></svg>"), auto;
     width: 100%;
     background-color: ghostwhite;
     display: flex;
@@ -20,15 +19,6 @@ const ContainerEstilizado = styled.div`
     position: absolute;
     align-items: center;
     margin-top: 5px;
-    
-    button {
-        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>👆🏻</text></svg>"), auto;
-    }
-    
-    input {
-        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>✍🏻</text></svg>"), auto;
-    }
-    
 `;
 const BoxEstilizado = styled.div`
     position: relative;
@@ -59,7 +49,7 @@ const Home = () => {
     // Acessa a tabela "books" do banco de dados.
     const getLivros = async () => {
         try {
-            const response = await axios.get('http://localhost:1234/api/v1/livros');
+            const response = await axios.get('http://localhost:3000/api/v1/livros');
             setLivros(response.data)
         } catch (error) {
             console.log(error.response)
@@ -69,7 +59,7 @@ const Home = () => {
     // Acessa a tabela "emprestimos" do banco de dados.
     const getEmprestimos = async () => {
         try {
-            const response = await axios.get('http://localhost:1234/api/v1/emprestimos');
+            const response = await axios.get('http://localhost:3000/api/v1/emprestimos');
             setEmprestimos(response.data)
         } catch (error) {
             console.log(error.response)

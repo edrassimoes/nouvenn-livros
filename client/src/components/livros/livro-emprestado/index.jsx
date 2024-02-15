@@ -2,7 +2,6 @@ import styled from "styled-components";
 import LivroPopup from "../../ui/pop-ups/info-livro/index.jsx";
 
 const LivroEstilizado = styled.div`
-    cursor: pointer;
     background-color: whitesmoke;
     border: black 2px solid;
     border-radius: 5px;

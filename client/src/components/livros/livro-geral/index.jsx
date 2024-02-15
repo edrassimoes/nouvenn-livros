@@ -6,7 +6,6 @@ import {ContaContext} from "../../../context/conta-context.jsx";
 import {toast} from "sonner";
 
 const LivroEstilizado = styled.div`
-    cursor: pointer;
     background-color: whitesmoke;
     border: black 2px solid;
     border-radius: 5px;
@@ -41,7 +40,6 @@ const LivroEstilizado = styled.div`
     
 `
 const BotaoSolicitar = styled.button`
-    cursor: pointer;
     font-family: "Comic Sans MS", sans-serif;
     border: 1px solid black;
     border-radius: 3px;
@@ -57,7 +55,7 @@ const LivroGeral = ({id, titulo, autor, idioma, paginas, editora, icone, dono}) 
     const {data} = useContext(ContaContext);
 
     const addEmprestimo = () => {
-        axios.post('http://localhost:1234/api/v1/emprestimos', {
+        axios.post('http://localhost:3000/api/v1/emprestimos', {
             o_username: dono,
             b_username: data.username,
             book_id: id,

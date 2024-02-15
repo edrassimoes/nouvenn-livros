@@ -22,7 +22,6 @@ const StyledPopup = styled(Popup)`
         button {
             background-color: red;
             font-family: "Comic Sans MS", sans-serif;
-            cursor: pointer;
             position: absolute;
             display: block;
             line-height: 20px;

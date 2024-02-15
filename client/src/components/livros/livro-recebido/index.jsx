@@ -4,7 +4,6 @@ import axios from "axios";
 import {toast} from "sonner";
 
 const LivroEstilizado = styled.div`
-    cursor: pointer;
     background-color: whitesmoke;
     border: black 2px solid;
     border-radius: 5px;
@@ -40,7 +39,6 @@ const LivroEstilizado = styled.div`
 
 `
 const BotaoDevolver = styled.button`
-    cursor: pointer;
     font-family: "Comic Sans MS", sans-serif;
     border: 1px solid black;
     border-radius: 3px;
@@ -54,13 +52,13 @@ const BotaoDevolver = styled.button`
 const LivroRecebido = ({id, titulo, autor, idioma, paginas, editora, icone, dono}) => {
 
     const encerrarEmprestimo= () => {
-        axios.delete(`http://localhost:1234/api/v1/emprestimos/${id}`)
+        axios.delete(`http://localhost:3000/api/v1/emprestimos/${id}`)
             .then(response => console.log(response))
             .catch(error => console.log(error));
     }
 
     const devolverLivro = () => {
-        axios.put(`http://localhost:1234/api/v1/livros/${id}`)
+        axios.put(`http://localhost:3000/api/v1/livros/${id}`)
             .then(response => console.log(response))
             .catch(error => console.log(error));
     }

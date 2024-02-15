@@ -5,7 +5,7 @@ import usuariosRoutes from "./src/usuarios/routes.js"
 import emprestimosRoutes from "./src/emprestimos/routes.js"
 
 const app = express();
-const port = 1234;
+const port = 3000;
 
 app.use(cors());
 app.use(express.json())

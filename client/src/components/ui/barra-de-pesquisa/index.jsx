@@ -21,7 +21,6 @@ const SearchBarEstilizada = styled.form`
     }
     
     button {
-        cursor: pointer;
         border: 2px solid black;
         border-radius: 3px;
         height: 39px;

@@ -9,6 +9,7 @@ const EstilosGlobais = createGlobalStyle`
 
     body {
         margin: 0;
+        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🤚🏻</text></svg>"), auto;
     }
 
     main {
@@ -76,6 +77,10 @@ const EstilosGlobais = createGlobalStyle`
     img {
         border-style: none;
     }
+    
+    input {
+        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>✍🏻</text></svg>"), auto;
+    }
 
     button,
     input,
@@ -102,6 +107,7 @@ const EstilosGlobais = createGlobalStyle`
     [type="button"],
     [type="reset"],
     [type="submit"] {
+        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>👆🏻</text></svg>"), pointer;
         -webkit-appearance: button;
     }
 
@@ -131,6 +137,10 @@ const EstilosGlobais = createGlobalStyle`
         max-width: 100%;
         padding: 0;
         white-space: normal;
+    }
+    
+    label {
+        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🤚🏻</text></svg>"), auto;
     }
 
     progress {

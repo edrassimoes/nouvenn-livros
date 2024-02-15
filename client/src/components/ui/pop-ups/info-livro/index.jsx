@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {useState} from "react";
 
 const BotaoInfo = styled.button`
-    cursor: pointer;
     font-family: "Comic Sans MS", sans-serif;
     margin-right: 5px;
     border: 1px solid black;
@@ -39,7 +38,6 @@ const StyledPopup = styled(Popup)`
 
         button {
             font-family: "Comic Sans MS", sans-serif;
-            cursor: pointer;
             position: absolute;
             display: block;
             line-height: 20px;

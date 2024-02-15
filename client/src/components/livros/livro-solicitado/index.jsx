@@ -4,7 +4,6 @@ import axios from "axios";
 import {toast} from "sonner";
 
 const LivroEstilizado = styled.div`
-    cursor: pointer;
     background-color: whitesmoke;
     border: black 2px solid;
     border-radius: 5px;
@@ -43,8 +42,6 @@ const LivroEstilizado = styled.div`
 
 `
 const BotaoAceitar = styled.button`
-
-    cursor: pointer;
     border: 1px solid black;
     border-radius: 3px;
     background-color: lightgreen;
@@ -54,9 +51,7 @@ const BotaoAceitar = styled.button`
     }
 `
 const BotaoNegar = styled.button`
-
     font-family: "Comic Sans MS", sans-serif;
-    cursor: pointer;
     border: 1px solid black;
     border-radius: 3px;
     background-color: red;
@@ -69,13 +64,13 @@ const BotaoNegar = styled.button`
 const LivroSolicitado = ({id, titulo, autor, idioma, paginas, editora, icone, dono}) => {
 
     const aprovarSolicitacao = () => {
-        axios.put(`http://localhost:1234/api/v1/livros/${id}`)
+        axios.put(`http://localhost:3000/api/v1/livros/${id}`)
             .then(response => console.log(response))
             .catch(error => console.log(error));
     }
 
     const negarSolicitacao = () => {
-        axios.delete(`http://localhost:1234/api/v1/emprestimos/${id}`)
+        axios.delete(`http://localhost:3000/api/v1/emprestimos/${id}`)
             .then(response => console.log(response))
             .catch(error => console.log(error));
     }

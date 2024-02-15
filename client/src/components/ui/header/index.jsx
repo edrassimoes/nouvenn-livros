@@ -22,8 +22,9 @@ const HeaderEstilizado = styled.header`
         padding: 3px;
         
         p {
+            font-size: 16px;
             align-self: center;
-            margin-left: 20px;
+            margin-left: 5px;
         }
         
     }
@@ -31,7 +32,6 @@ const HeaderEstilizado = styled.header`
 `
 const BotaoSair = styled.button`
     color: red;
-    cursor: pointer;
     font-family: "Comic Sans MS", sans-serif;
     font-weight: bold;
     border: 1px solid black;

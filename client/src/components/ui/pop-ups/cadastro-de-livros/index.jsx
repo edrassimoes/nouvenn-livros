@@ -8,7 +8,6 @@ import {ContaContext} from "../../../../context/conta-context.jsx";
 import {toast, Toaster} from "sonner";
 
 const StyledPopup = styled(Popup)`
-    
     &-overlay {
         background-color: rgba(0, 0, 0, 0.5);
     }
@@ -37,7 +36,6 @@ const BotaoCadastro = styled.button`
     height: 35px;
     border: 2px solid black;
     border-radius: 3px;
-    cursor: pointer;
     font-family: "Comic Sans MS", sans-serif;
     margin: 7px;
 
@@ -49,7 +47,6 @@ const BotaoCadastro = styled.button`
 `
 const BotaoFechar = styled.button`
     font-family: "Comic Sans MS", sans-serif;
-    cursor: pointer;
     position: absolute;
     display: block;
     right: -16px;
@@ -91,7 +88,6 @@ const BotaoSubmit = styled.input`
     right: 10px;
 
     &:hover {
-        cursor: pointer;
         background: lightgreen;
         scale: 1.1;
     }
@@ -114,7 +110,7 @@ const CadastroPopup = () => {
 
     const adicionarLivro = async () => {
         try {
-            await axios.post('http://localhost:1234/api/v1/livros', {
+            await axios.post('http://localhost:3000/api/v1/livros', {
                 ...livro,
                 dono: data.username
             });

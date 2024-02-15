@@ -14,6 +14,10 @@ const PageContainer = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
+    a {
+        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>👆🏻</text></svg>"), pointer;
+    }
 
 `;
 const SingupContainer = styled.div`
@@ -56,7 +60,6 @@ const SingupContainer = styled.div`
         }
 
         a {
-            cursor: pointer;
             color: darkblue;
 
             &:hover {
@@ -69,7 +72,6 @@ const SingupContainer = styled.div`
 
 `;
 const BotaoCriar = styled.input`
-    cursor: pointer;
     font-size: larger;
     border: 2px solid black;
     border-radius: 5px;
@@ -99,7 +101,7 @@ const Signup = () => {
     // Acessa a tabela "users" do banco de dados.
     const getUsuarios = async () => {
         try {
-            const response = await axios.get('http://localhost:1234/api/v1/usuarios');
+            const response = await axios.get('http://localhost:3000/api/v1/usuarios');
             const userTable = response.data;
             setUsuarios(userTable)
         } catch (error) {
@@ -109,7 +111,7 @@ const Signup = () => {
 
     const addUsuario = async () => {
         try {
-            await axios.post('http://localhost:1234/api/v1/usuarios', {
+            await axios.post('http://localhost:3000/api/v1/usuarios', {
                 username: nome,
                 email: email,
                 password: senha
