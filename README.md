@@ -71,9 +71,10 @@ npm start
 
 ## Estrutura do Projeto
 - 📂 client/: Contém o código do cliente.
-- 📂 server/: Contém o código do servidor.
-- 📂 test/: Contém os arquivos de teste.
 - 📂 docker/: Contém o Dockerfile.
+- 📂 server/: Contém o código do servidor.
+- 📂 sql/: Contém a configuração inicial necessária ao banco de dados.
+- 📂 test/: Contém os arquivos de teste.
 
 ---
 
