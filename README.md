@@ -46,7 +46,7 @@ create table if not exists emprestimos (
 );
 ```
 
-## 📌 Instalação
+## 👨🏻‍💻 Instalação
 
 1. Clone este repositório para sua máquina local.
 
