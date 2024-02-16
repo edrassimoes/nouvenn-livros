@@ -4,10 +4,9 @@
 
 ## ⚙️ Pré-requisitos
 
-- Node.js e npm devem estar instalados na sua máquina.
+- [Node.js](https://nodejs.org/en/download/current) deve estar instalado na sua máquina.
 
-- Você precisa ter o PostgreSQL instalado na sua máquina para o funcionamento correto da aplicação.
-
+- [PostgresSQL](https://www.postgresql.org/download/) deve estar instalado na sua máquina.
 
 ## 🐘 Configurando o PostgresSQL
 
@@ -61,7 +60,7 @@ npm install
 ```
 
 4. Executando a Aplicação.
-Após instalar as dependências, você pode executar a aplicação usando o comando npm start, que utilizará o pacote concurrently para iniciar os processos do cliente e do servidor simultaneamente.
+Após instalar as dependências, você pode executar a aplicação usando o comando npm start, que utilizará o pacote [concurrently](https://www.npmjs.com/package/concurrently) para iniciar os processos do cliente e do servidor simultaneamente.
 ```bash
 npm start
 ```
