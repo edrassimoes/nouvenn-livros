@@ -51,6 +51,6 @@ npm start
 ---
 
 <div display="flex" align="center">
-  <p><i>Repositório destinado a segunda etapa do processo seletivo para a vaga de Estágio em Desenvolvimento de Software na Nouvenn.</i></p>
+  <p font-size="12px"><i>Repositório destinado a segunda etapa do processo seletivo para a vaga de Estágio em Desenvolvimento de Software na Nouvenn.</i></p>
   <img src="client/src/assets/nouvenn_logo.jpg" alt="Nouvenn logo" width="80" height="80">
 </div>
