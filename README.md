@@ -22,7 +22,7 @@ git clone https://github.com/edrassimoes/nouvenn-livros.git
 
 2. Navegue até o diretório da aplicação.
 ```bash
-cd sua-aplicacao
+cd nouvenn-livros
 ```
 
 3. Instale as dependências usando npm.
