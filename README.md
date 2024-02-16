@@ -77,7 +77,10 @@ npm start
 
 ---
 
-<div display="flex" align="center">
-  <p font-size="12px"><i>Repositório destinado a segunda etapa do processo seletivo para a vaga de Estágio em Desenvolvimento de Software na Nouvenn.</i></p>
+<div align="center">
+  <a href="https://media.licdn.com/dms/image/D4D22AQHJzEukve8ADw/feedshare-shrink_1280/0/1703185469597?e=1710979200&v=beta&t=epa3oyLnc-37wb8nh_y1ad3op2HeMDYHQUDiZRcKiYE"><i>Repositório destinado a segunda etapa do processo seletivo para a vaga de Estágio em Desenvolvimento de Software na Nouvenn.</i></a>
+</div>
+<p> </p>
+<div align="center">
   <img src="client/src/assets/nouvenn_logo.jpg" alt="Nouvenn logo" width="80" height="80">
 </div>
