@@ -87,8 +87,7 @@ const EstanteGeral = (props) => {
                         ))
                 )}
             </ScrollableDiv>
-
-            <MenssagemEstilizada>〰 Aqui aparecerão somente os livros de outros usuários. 〰</MenssagemEstilizada>
+            <MenssagemEstilizada>〰 Aqui aparecerão somente os livros disponíveis de outros usuários. 〰</MenssagemEstilizada>
         </EstanteEstilizada>
     );
 };

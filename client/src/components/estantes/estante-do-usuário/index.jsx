@@ -78,7 +78,7 @@ const EstanteConta = (props) => {
                 )
             }
             <section>
-                <MenssagemEstilizada>〰 Aqui aparecerão somente os livros que você não emprestou. 〰</MenssagemEstilizada>
+                <MenssagemEstilizada>〰 Aqui aprecerão todos os livros que você cadastrou. 〰</MenssagemEstilizada>
             </section>
         </EstanteEstilizada>
     );
