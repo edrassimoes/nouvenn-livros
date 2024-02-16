@@ -59,8 +59,7 @@ git clone https://github.com/edrassimoes/nouvenn-livros.git
 npm install
 ```
 
-3. Executando a Aplicação.
-Após instalar as dependências, você pode executar a aplicação usando o comando npm start, que utilizará o pacote [concurrently](https://www.npmjs.com/package/concurrently) para iniciar os processos do cliente e do servidor simultaneamente.
+3. Agora, você pode executar a aplicação utilizando o comando npm start, que fará uso do pacote [concurrently](https://www.npmjs.com/package/concurrently) para iniciar os processos do cliente e do servidor simultaneamente.
 ```bash
 npm start
 ```
@@ -69,11 +68,11 @@ npm start
 - 📡 Servidor: http://localhost:3000
 
 ## 🗂 Estrutura do Projeto
-- 📂 client/: Contém o código do cliente.
-- 📂 docker/: Contém o Dockerfile.
-- 📂 server/: Contém o código do servidor.
-- 📂 sql/: Contém a configuração inicial necessária ao banco de dados.
-- 📂 test/: Contém os arquivos de teste.
+- 📂 client: Contém o código do cliente.
+- 📂 docker: Contém o Dockerfile.
+- 📂 server: Contém o código do servidor.
+- 📂 sql: Contém a configuração inicial necessária ao banco de dados.
+- 📂 test: Contém os arquivos de teste.
 
 ---
 
