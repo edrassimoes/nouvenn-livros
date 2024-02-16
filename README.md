@@ -59,12 +59,12 @@ git clone https://github.com/edrassimoes/nouvenn-livros.git
 npm install
 ```
 
-4. Executando a Aplicação.
+3. Executando a Aplicação.
 Após instalar as dependências, você pode executar a aplicação usando o comando npm start, que utilizará o pacote [concurrently](https://www.npmjs.com/package/concurrently) para iniciar os processos do cliente e do servidor simultaneamente.
 ```bash
 npm start
 ```
-5. Acesso:
+4. Acesso:
 - 👤 Cliente: http://localhost:5173
 - 📡 Servidor: http://localhost:3000
 
