@@ -1,6 +1,6 @@
 ![Estante](client/src/assets/teste4.png "Estante")
 
-# Executando a Aplicação
+# Executando a aplicação "📚 Empréstimo de Livros"
 
 ## ⚙️ Pré-requisitos
 
@@ -64,11 +64,11 @@ Após instalar as dependências, você pode executar a aplicação usando o coma
 ```bash
 npm start
 ```
-4. Acesso:
+📎 Links de acesso:
 - 👤 Cliente: http://localhost:5173
 - 📡 Servidor: http://localhost:3000
 
-## Estrutura do Projeto
+## 🗂 Estrutura do Projeto
 - 📂 client/: Contém o código do cliente.
 - 📂 docker/: Contém o Dockerfile.
 - 📂 server/: Contém o código do servidor.
