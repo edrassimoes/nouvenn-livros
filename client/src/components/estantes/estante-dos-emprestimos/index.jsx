@@ -8,7 +8,7 @@ const EstanteEstilizada = styled.div`
     border: black 2px solid;
     border-radius: 5px;
     height: 100%;
-    padding: 10px 10px 40px 10px;
+    padding: 10px;
     box-shadow: 5px 5px 0 black;
     section {
         margin: 10px 0;
@@ -31,7 +31,7 @@ const MenssagemEstilizada = styled.p`
     font-family: "Comic Sans MS", sans-serif;
     color: gray;
     align-self: center;
-    margin: 10px 0;
+    margin: 5px 0;
 
     @media (max-width: 600px) {
         font-size: 14px;

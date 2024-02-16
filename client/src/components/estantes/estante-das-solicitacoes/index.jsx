@@ -8,7 +8,7 @@ const EstanteEstilizada = styled.div`
     border: black 2px solid;
     border-radius: 5px;
     height: 100%;
-    padding: 10px 10px 40px 10px;
+    padding: 10px;
     box-shadow: 5px 5px 0 black;
     section {
         margin: 10px 0;
