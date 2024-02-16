@@ -1,18 +1,20 @@
 # Executando a Aplicação
 
-## Pré-requisitos
+## ⚙️ Pré-requisitos
 
 - Node.js e npm devem estar instalados na sua máquina.
 
 - Você precisa ter o PostgreSQL instalado na sua máquina para o funcionamento correto da aplicação.
-- **Por favor, certifique-se de configurar o PostgreSQL com as seguintes credenciais:**
+
+
+‼️ **Por favor, certifique-se de configurar o PostgreSQL com as seguintes credenciais:**
   - Usuário: "postgres"
   - Host: "localhost"
   - Banco de Dados: "postgres"
   - Senha: "postgres"
   - Porta: 5432
 
-## Instalação
+## 📌 Instalação
 
 1. Clone este repositório para sua máquina local.
 
@@ -38,7 +40,7 @@ npm start
 Você poderá acessar o cliente em http://localhost:5173 e o servidor em http://localhost:3000.
 
 Estrutura do Projeto
-- client/: Contém o código do cliente.
-- server/: Contém o código do servidor.
-- test/: Contém os arquivos de teste.
-- docker/: Contém o Dockerfile.
+- 📂 client/: Contém o código do cliente.
+- 📂 server/: Contém o código do servidor.
+- 📂 test/: Contém os arquivos de teste.
+- 📂 docker/: Contém o Dockerfile.
